@@ -22,7 +22,7 @@ A modern, interactive showcase of AI-powered sales solutions built with React, F
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/andrewbryce/sales-demo.git
+git clone https://github.com/sixtyseconds/sales-demo.git
 cd sales-demo
 ```
 
