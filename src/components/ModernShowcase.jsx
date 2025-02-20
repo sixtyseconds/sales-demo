@@ -114,13 +114,13 @@ const ModernShowcase = () => {
     },
     'content-creation': {
       title: 'Instant Content Creation',
-      subtitle: 'AI Video & Content',
+      subtitle: 'Professional Videos & AI Content',
       description: 'Create engaging content in minutes.',
       features: [
         {
           icon: <Video className="w-5 h-5" />,
           title: 'Quick Videos',
-          description: 'Create professional videos in minutes'
+          description: 'Create short, high-converting videos for sales outreach'
         },
         {
           icon: <Users className="w-5 h-5" />,
@@ -129,8 +129,8 @@ const ModernShowcase = () => {
         },
         {
           icon: <Globe className="w-5 h-5" />,
-          title: 'Multi-Channel',
-          description: 'Share across all your platforms'
+          title: 'Explainer Videos',
+          description: 'Create in-depth content to nurture your audience'
         },
         {
           icon: <MousePointer className="w-5 h-5" />,
@@ -240,7 +240,7 @@ const ModernShowcase = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-y-scroll overflow-x-hidden relative [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-black/20 [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full">
+    <div className="min-h-screen bg-[#000108] text-white overflow-y-scroll overflow-x-hidden relative [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-black/20 [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full">
       {/* Background Mesh with Animation */}
       <motion.div 
         className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:24px_24px] opacity-50"
@@ -343,7 +343,11 @@ const ModernShowcase = () => {
                       setSelectedChallenge(challenge);
                       setCurrentStep('solutions');
                     }}
-                    className={`group cursor-pointer rounded-2xl p-6 md:p-8 bg-gradient-to-br ${challenge.color} 
+                    className={`group cursor-pointer rounded-2xl p-6 md:p-8 bg-gradient-to-br 
+                      ${challenge.id === 'leads' ? 'from-[#8129D7] to-[#2A5EDB]' : 
+                      challenge.id === 'scale' ? 'from-[#2A5EDB] to-[#03AD9C]' : 
+                      challenge.id === 'content' ? 'from-[#03AD9C] to-[#8129D7]' : 
+                      'from-[#2A5EDB] to-[#03AD9C]'}
                       bg-opacity-5 hover:bg-opacity-10 backdrop-blur-xl border border-white/10 
                       hover:border-white/20 transition-all duration-300 relative overflow-hidden`}
                   >
