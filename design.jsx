@@ -26,8 +26,8 @@ const ModernShowcase = () => {
       title: 'Scale Outreach',
       icon: <TrendingUp className="w-8 h-8" />,
       color: 'from-emerald-500 to-teal-500',
-      description: 'Need to reach more prospects without sacrificing personalization?',
-      solutions: ['ai-personalization', 'automation']
+      description: 'Need to reach more prospects without sacrificing personalisation?',
+      solutions: ['ai-personalisation', 'automation']
     },
     {
       id: 'content',
@@ -43,7 +43,7 @@ const ModernShowcase = () => {
       icon: <Sparkles className="w-8 h-8" />,
       color: 'from-pink-500 to-rose-500',
       description: 'Looking to cut through the noise and grab attention?',
-      solutions: ['personalized-video', 'engagement']
+      solutions: ['personalised-video', 'engagement']
     }
   ];
 

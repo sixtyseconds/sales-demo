@@ -148,7 +148,7 @@ const ModernShowcase = () => {
         },
         {
           title: 'Advanced LinkedIn Automation',
-          description: 'Smart profile analysis, automated connection requests, and personalized messaging with built-in safety limits and natural engagement patterns.'
+          description: 'Smart profile analysis, automated connection requests, and personalised messaging with built-in safety limits and natural engagement patterns.'
         },
         {
           title: 'Instant Page Builder',
@@ -156,7 +156,7 @@ const ModernShowcase = () => {
         },
         {
           title: 'Video Prospecting Studio',
-          description: 'Generate personalized video messages at scale using our modular system. Mix pre-recorded segments with custom intros for maximum impact.'
+          description: 'Generate personalised video messages at scale using our modular system. Mix pre-recorded segments with custom intros for maximum impact.'
         }
       ],
       solutions: ['tools-solution']
@@ -193,15 +193,15 @@ const ModernShowcase = () => {
       cta: 'Watch Demo',
       demo: 'Try It Now'
     },
-    'ai-personalization': {
-      title: 'Personalized Outreach at Scale',
+    'ai-personalisation': {
+      title: 'Personalised Outreach at Scale',
       subtitle: 'Smart Messaging',
       description: "Reach more prospects while keeping it personal.",
       features: [
         {
           icon: <MessageCircle className="w-5 h-5" />,
           title: 'AI Message Crafting',
-          description: 'Generate personalized messages that resonate'
+          description: 'Generate personalised messages that resonate'
         },
         {
           icon: <Globe className="w-5 h-5" />,
@@ -235,7 +235,7 @@ const ModernShowcase = () => {
         {
           icon: <Users className="w-5 h-5" />,
           title: 'Custom Intros',
-          description: 'Personalized video messages for prospects'
+          description: 'Personalised video messages for prospects'
         },
         {
           icon: <FileVideo className="w-5 h-5" />,
@@ -259,7 +259,7 @@ const ModernShowcase = () => {
         {
           icon: <Video className="w-5 h-5" />,
           title: 'Custom Videos',
-          description: 'Create personalized video messages'
+          description: 'Create personalised video messages'
         },
         {
           icon: <Globe className="w-5 h-5" />,
@@ -427,7 +427,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: 'AI-powered follow-up sequences based on prospect behavior',
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour',
           included: false
         },
         {
@@ -525,7 +525,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: 'AI-powered follow-up sequences based on prospect behavior',
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour',
           included: true
         },
         {
@@ -624,7 +624,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: 'AI-powered follow-up sequences based on prospect behavior',
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour',
           included: true
         },
         {
