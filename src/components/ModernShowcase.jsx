@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { 
   Users, Video, MessageCircle, TrendingUp, 
   Target, Megaphone, PlayCircle, FileVideo,
@@ -9,6 +10,9 @@ import {
 } from 'lucide-react';
 
 const ModernShowcase = () => {
+  const navigate = useNavigate();
+  const { challengeId } = useParams();
+  const location = useLocation();
   const [currentStep, setCurrentStep] = useState('challenges');
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [selectedSolution, setSelectedSolution] = useState(null);
@@ -390,6 +394,25 @@ const ModernShowcase = () => {
     return () => clearInterval(interval);
   }, [isAnimationStarted, shuffledAudience]);
 
+  // Update useEffect to handle URL-based navigation
+  useEffect(() => {
+    if (location.pathname === '/pricing') {
+      setShowPricing(true);
+      setCurrentStep('pricing');
+    } else if (challengeId) {
+      const challenge = challenges.find(c => c.id === challengeId);
+      if (challenge) {
+        setSelectedChallenge(challenge);
+        setCurrentStep('solutions');
+      } else {
+        navigate('/', { replace: true });
+      }
+    } else {
+      setCurrentStep('challenges');
+      setShowPricing(false);
+    }
+  }, [location.pathname, challengeId]);
+
   const pricingPlans = [
     {
       name: 'Starter',
@@ -705,25 +728,19 @@ const ModernShowcase = () => {
     return `${symbol}${Math.round(basePrice * rate * multiplier).toLocaleString()}`;
   };
 
-  // Add navigation handler
-  const handleNavigation = (nextStep) => {
-    setNavigationHistory(prev => [...prev, nextStep]);
-    setCurrentStep(nextStep);
+  // Update navigation handlers
+  const handleNavigation = (nextStep, challenge = null) => {
+    if (nextStep === 'solutions' && challenge) {
+      navigate(`/solutions/${challenge.id}`);
+    } else if (nextStep === 'pricing') {
+      navigate('/pricing');
+    } else {
+      navigate('/');
+    }
   };
 
-  // Add back navigation handler
   const handleBack = () => {
-    const newHistory = [...navigationHistory];
-    newHistory.pop(); // Remove current page
-    const previousPage = newHistory[newHistory.length - 1] || 'challenges';
-    
-    setNavigationHistory(newHistory);
-    setCurrentStep(previousPage);
-    setShowPricing(false); // Always reset showPricing when going back
-    
-    if (previousPage === 'challenges') {
-      setSelectedChallenge(null);
-    }
+    navigate(-1);
   };
 
   return (
@@ -889,8 +906,7 @@ const ModernShowcase = () => {
                       onHoverStart={() => setHoveredCard(challenge.id)}
                       onHoverEnd={() => setHoveredCard(null)}
                       onClick={() => {
-                        setSelectedChallenge(challenge);
-                        handleNavigation('solutions');
+                        handleNavigation('solutions', challenge);
                       }}
                       className={`group cursor-pointer rounded-2xl p-8 md:p-10 ${challenge.color}
                         relative overflow-hidden transform-gpu
@@ -948,7 +964,6 @@ const ModernShowcase = () => {
                             onClick={(e) => {
                               e.stopPropagation();
                               handleNavigation('pricing');
-                              setShowPricing(true);
                             }}
                             className="px-5 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 font-medium"
                           >
