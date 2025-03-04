@@ -396,9 +396,34 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: '50 Video Credits/month',
-          tooltip: 'Credits for creating and rebuilding your video templates',
-          included: true
+          name: 'B2B Contact Sourcing',
+          tooltip: 'Fresh, verified B2B contact data for your target market',
+          included: false
+        },
+        {
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy',
+          included: false
+        },
+        {
+          name: 'Campaign Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews',
+          included: false
+        },
+        {
+          name: 'Deliverability Setup & Management',
+          tooltip: 'Our dedicated team ensure maximum message delivery',
+          included: false
+        },
+        {
+          name: 'Smart Follow-ups',
+          tooltip: 'AI-powered follow-up sequences based on prospect behavior',
+          included: false
+        },
+        {
+          name: 'Managed Replies',
+          tooltip: 'Our internal team monitor and reply to prospect messages on time',
+          included: false
         },
         {
           name: 'Basic Self-Hosted Landing Page',
@@ -406,19 +431,14 @@ const ModernShowcase = () => {
           included: true
         },
         {
+          name: '2x 30 second Ad Videos',
+          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
+          included: false
+        },
+        {
           name: 'Basic Personalisation',
           tooltip: 'Personalise the landing page content with each prospects name',
           included: true
-        },
-        {
-          name: 'Standard Support',
-          tooltip: 'Chat & Email Support during business hours',
-          included: true
-        },
-        {
-          name: 'Multi-Channel Outreach',
-          tooltip: 'Reach prospects across multiple platforms including email, LinkedIn, and more',
-          included: false
         },
         {
           name: 'Self-Serve AI VoiceOver',
@@ -426,20 +446,35 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: 'Advanced Data Sourcing',
-          tooltip: 'AI-powered prospect research and data enrichment',
+          name: 'CRM Integration',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho',
           included: false
         },
         {
-          name: 'Automated Follow-ups',
-          tooltip: 'Smart follow-up sequences based on prospect engagement',
+          name: 'Stats Updates',
+          tooltip: 'Comprehensive performance metrics and insights',
           included: false
         },
         {
-          name: 'Optimisation Team',
-          tooltip: 'Dedicated team for campaign optimisation and strategy',
+          name: '50 Video Credits/month',
+          tooltip: 'Credits for creating and rebuilding your video templates',
+          included: true
+        },
+        {
+          name: 'Automated Video Workflows',
+          tooltip: 'Custom built workflows to automate video production',
           included: false
-        }
+        },
+        {
+          name: 'One-Off Bespoke 60s Video',
+          tooltip: 'Bespoke, high quality product/brand explainer video',
+          included: false
+        },
+        {
+          name: 'Standard Support',
+          tooltip: 'Chat & Email Support during business hours',
+          included: true
+        },
       ],
       gradient: 'from-[#8129D7]/40 to-[#9747FF]/40',
       buttonGradient: 'from-[#8129D7] to-[#9747FF]'
@@ -459,13 +494,18 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: 'Monthly Optimisation',
-          tooltip: 'Regular campaign optimisation and performance reviews',
+          name: '2,000 B2B Contacts/month',
+          tooltip: 'Fresh, verified B2B contact data for your target market',
           included: true
         },
         {
-          name: '2,000 B2B Contacts/month',
-          tooltip: 'Fresh, verified B2B contact data for your target market',
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy',
+          included: true
+        },
+        {
+          name: 'Monthly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews',
           included: true
         },
         {
@@ -489,6 +529,11 @@ const ModernShowcase = () => {
           included: true
         },
         {
+          name: '2x 30 second Ad Videos',
+          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
+          included: true
+        },
+        {
           name: 'Advanced Personalisation',
           tooltip: 'Personalise the landing page content with each prospects name',
           included: true
@@ -499,23 +544,18 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: 'Daily Stats',
-          tooltip: 'Comprehensive daily performance metrics and insights',
-          included: true
-        },
-        {
           name: 'CRM Integration',
           tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho',
           included: true
         },
         {
-          name: '200 Video Credits/month',
-          tooltip: 'Credits for creating and customising video templates with advanced features',
+          name: 'Daily Stats',
+          tooltip: 'Comprehensive daily performance metrics and insights',
           included: true
         },
         {
-          name: '2x 30 second Ad Videos',
-          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
+          name: '200 Video Credits/month',
+          tooltip: 'Credits for creating and customising video templates with advanced features',
           included: true
         },
         {
@@ -553,13 +593,18 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: 'Weekly Optimisation',
-          tooltip: 'Regular campaign optimisation and performance reviews',
+          name: '5,000 B2B Contacts/month',
+          tooltip: 'Fresh, verified B2B contact data for your target market',
           included: true
         },
         {
-          name: '5,000 B2B Contacts/month',
-          tooltip: 'Fresh, verified B2B contact data for your target market',
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy',
+          included: true
+        },
+        {
+          name: 'Weekly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews',
           included: true
         },
         {
@@ -583,6 +628,11 @@ const ModernShowcase = () => {
           included: true
         },
         {
+          name: '2x 30 second Ad Videos',
+          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
+          included: true
+        },
+        {
           name: 'Hyper Personalisation',
           tooltip: 'Personalise the landing page content with each prospects name as well as intro sentence',
           included: true
@@ -593,23 +643,18 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: 'Live Stats',
-          tooltip: 'Live performance metrics and insights, directly to your messaging platform',
-          included: true
-        },
-        {
           name: 'CRM Integration',
           tooltip: 'All + Salesforce & Custom API',
           included: true
         },
         {
-          name: '500 Video Credits/month',
-          tooltip: 'Credits for creating and customising video templates with advanced features',
+          name: 'Live Stats',
+          tooltip: 'Live performance metrics and insights, directly to your messaging platform',
           included: true
         },
         {
-          name: '2x 30 second Ad Videos',
-          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
+          name: '500 Video Credits/month',
+          tooltip: 'Credits for creating and customising video templates with advanced features',
           included: true
         },
         {
@@ -629,36 +674,7 @@ const ModernShowcase = () => {
         }
       ],
       gradient: 'from-[#03AD9C]/40 to-[#06C4B0]/40',
-      buttonGradient: 'from-[#03AD9C] to-[#06C4B0]'
-    },
-    {
-      name: 'Looking for something custom?',
-      price: 'Custom',
-      description: 'Get a tailored solution that perfectly fits your enterprise needs',
-      features: [
-        { 
-          name: 'Custom AI Model Training', 
-          tooltip: 'Train AI models specifically for your use case and industry',
-          included: true 
-        },
-        { 
-          name: 'Dedicated Account Management', 
-          tooltip: '24/7 support with a dedicated account manager for your enterprise',
-          included: true 
-        },
-        { 
-          name: 'Custom API Integration', 
-          tooltip: 'Seamless integration with your existing tools and workflows',
-          included: true 
-        },
-        { 
-          name: 'Enterprise SLA', 
-          tooltip: 'Guaranteed uptime and performance with enterprise-grade SLA',
-          included: true 
-        }
-      ],
-      gradient: 'from-[#8129D7]/40 to-[#9747FF]/40',
-      buttonGradient: 'from-[#8129D7] to-[#9747FF]',
+      buttonGradient: 'from-[#03AD9C] to-[#06C4B0]',
       isCustom: true
     }
   ];
@@ -693,10 +709,10 @@ const ModernShowcase = () => {
     
     setNavigationHistory(newHistory);
     setCurrentStep(previousPage);
+    setShowPricing(false); // Always reset showPricing when going back
     
     if (previousPage === 'challenges') {
       setSelectedChallenge(null);
-      setShowPricing(false);
     }
   };
 
@@ -1206,20 +1222,21 @@ const ModernShowcase = () => {
                       transition={{ delay: 0.7 }}
                       className="md:col-span-3 mt-8"
                     >
-                      <div className="rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 
-                        overflow-hidden transform-gpu transition-all duration-300
-                        hover:border-white/20 hover:shadow-[0_0_50px_rgba(255,255,255,0.1)]
-                        relative before:absolute before:inset-0 before:bg-gradient-to-b 
-                        before:from-white/[0.05] before:to-transparent before:pointer-events-none
-                        p-8 md:p-12"
-                      >
+                      <div className="rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 hover:border-white/20 overflow-hidden p-8 md:p-10 transition-all duration-300">
                         <div className="relative z-10">
                           <div className="flex flex-col md:flex-row items-start justify-between gap-8">
                             <div className="flex-1">
                               <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Looking for something custom?</h3>
                               <p className="text-xl text-white/80 mb-6 max-w-2xl">Get a tailored solution that perfectly fits your enterprise needs</p>
                               <div className="flex flex-wrap gap-6">
-                                {pricingPlans[3].features.map((feature, i) => (
+                                {[
+                                  { name: 'Unlimited Users', tooltip: 'No restrictions on team size' },
+                                  { name: 'Custom AI Email Volume', tooltip: 'Tailored to your specific needs' },
+                                  { name: 'Unlimited B2B Contacts', tooltip: 'Access our entire B2B database' },
+                                  { name: 'Dedicated Success Team', tooltip: '24/7 support and strategy optimization' },
+                                  { name: 'Custom Integrations', tooltip: 'Connect with any tools in your tech stack' },
+                                  { name: 'Enterprise Security', tooltip: 'Advanced security and compliance features' }
+                                ].map((feature, i) => (
                                   <div key={i} className="group relative flex items-center gap-2">
                                     <div className="p-1 rounded-full bg-emerald-500/10">
                                       <Check className="w-4 h-4 text-emerald-400" />
@@ -1238,18 +1255,22 @@ const ModernShowcase = () => {
                                 ))}
                               </div>
                             </div>
-                            <motion.button
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                              className="flex-shrink-0 px-8 py-4 rounded-lg bg-white/5 
-                                hover:bg-gradient-to-r from-white/10 to-white/5
-                                text-white text-lg font-medium transition-all duration-300 
-                                border border-white/10 hover:border-white/20
-                                hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]
-                                md:mt-0"
-                            >
-                              Get in Touch
-                            </motion.button>
+                            <div className="flex-shrink-0">
+                              <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                }}
+                                className="px-8 py-3 rounded-lg bg-gradient-to-r from-[#8129D7] to-[#2A5EDB] 
+                                  hover:from-[#9747FF] hover:to-[#4C7AE6] text-white font-medium shadow-lg 
+                                  transition-all duration-300 flex items-center gap-2"
+                              >
+                                Get in Touch
+                                <ArrowRight className="w-5 h-5" />
+                              </motion.button>
+                            </div>
                           </div>
                         </div>
                       </div>
