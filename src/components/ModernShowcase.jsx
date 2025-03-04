@@ -386,64 +386,59 @@ const ModernShowcase = () => {
       price: '249',
       description: 'Perfect for small teams testing video outreach',
       features: [
-        { 
-          name: '500 AI Video Messages/month', 
-          tooltip: 'Create personalized video messages with AI-powered customization for each prospect',
-          included: true 
+        {
+          name: 'Up to 3 Users',
+          included: true
         },
-        { 
-          name: 'Up to 3 Users', 
-          included: true 
+        {
+          name: '500 Self-Serve AI Video Messages/month',
+          tooltip: 'Create personalised video messages with AI-powered customisation for each prospect',
+          included: true
         },
-        { 
-          name: '50 Video Credits/month', 
-          tooltip: 'Credits for creating and rebuilding custom video templates',
-          included: true 
+        {
+          name: '50 Video Credits/month',
+          tooltip: 'Credits for creating and rebuilding your video templates',
+          included: true
         },
-        { 
-          name: 'Basic Landing Page', 
-          tooltip: 'Default landing page template with WordPress/Webflow Integration',
-          included: true 
+        {
+          name: 'Basic Self-Hosted Landing Page',
+          tooltip: 'Default landing page template ready for DIY WordPress/Webflow Integration',
+          included: true
         },
-        { 
-          name: 'Basic Personalization', 
-          tooltip: 'Personalize content with prospect names and company information',
-          included: true 
+        {
+          name: 'Basic Personalisation',
+          tooltip: 'Personalise the landing page content with each prospects name',
+          included: true
         },
-        { 
-          name: 'Chrome Extension', 
-          tooltip: 'Access prospecting tools directly in your browser',
-          included: true 
-        },
-        { 
-          name: 'Standard Support', 
+        {
+          name: 'Standard Support',
           tooltip: 'Chat & Email Support during business hours',
-          included: true 
+          included: true
         },
-        { 
-          name: 'Multi-Channel Outreach', 
+        {
+          name: 'Multi-Channel Outreach',
           tooltip: 'Reach prospects across multiple platforms including email, LinkedIn, and more',
-          included: false 
+          included: false
         },
-        { 
-          name: 'Advanced Data Sourcing', 
+        {
+          name: 'Self-Serve AI VoiceOver',
+          tooltip: 'Add your own professional clone voiceovers using AI technology',
+          included: true
+        },
+        {
+          name: 'Advanced Data Sourcing',
           tooltip: 'AI-powered prospect research and data enrichment',
-          included: false 
+          included: false
         },
-        { 
-          name: 'Automated Follow-ups', 
+        {
+          name: 'Automated Follow-ups',
           tooltip: 'Smart follow-up sequences based on prospect engagement',
-          included: false 
+          included: false
         },
-        { 
-          name: 'AI VoiceOver', 
-          tooltip: 'Generate professional voiceovers using AI technology',
-          included: false 
-        },
-        { 
-          name: 'Optimization Team', 
-          tooltip: 'Dedicated team for campaign optimization and strategy',
-          included: false 
+        {
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy',
+          included: false
         }
       ],
       gradient: 'from-[#8129D7]/40 to-[#9747FF]/40',
@@ -454,64 +449,89 @@ const ModernShowcase = () => {
       price: '999',
       description: 'Ideal for SMEs scaling engagement & automation',
       features: [
-        { 
-          name: '4,000 AI Emails/month', 
-          tooltip: 'Generate and send personalized AI-crafted emails with video content',
-          included: true 
+        {
+          name: 'Up to 10 Users',
+          included: true
         },
-        { 
-          name: 'Up to 10 Users', 
-          included: true 
+        {
+          name: '4,000 AI Emails/month',
+          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content',
+          included: true
         },
-        { 
-          name: '200 Video Credits/month', 
-          tooltip: 'Credits for creating and customizing video templates with advanced features',
-          included: true 
+        {
+          name: 'Monthly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews',
+          included: true
         },
-        { 
-          name: 'Custom Landing Pages', 
-          tooltip: 'Professionally built and hosted landing pages with your branding',
-          included: true 
-        },
-        { 
-          name: '2x Video Templates', 
-          tooltip: '30-second custom video templates with professional editing',
-          included: true 
-        },
-        { 
-          name: 'Monthly Optimization', 
-          tooltip: 'Regular campaign optimization and performance reviews',
-          included: true 
-        },
-        { 
-          name: '2,000 B2B Contacts/month', 
+        {
+          name: '2,000 B2B Contacts/month',
           tooltip: 'Fresh, verified B2B contact data for your target market',
-          included: true 
+          included: true
         },
-        { 
-          name: 'Email Integration', 
-          tooltip: 'Seamless integration with your email marketing tools',
-          included: true 
+        {
+          name: 'Deliverability Setup & Management',
+          tooltip: 'Our dedicated team ensure maximum message delivery',
+          included: true
         },
-        { 
-          name: 'Smart Follow-ups', 
+        {
+          name: 'Smart Follow-ups',
           tooltip: 'AI-powered follow-up sequences based on prospect behavior',
-          included: true 
+          included: true
         },
-        { 
-          name: 'AI Voice Options', 
-          tooltip: 'Choose between male and female AI voiceover options',
-          included: true 
+        {
+          name: 'Managed Replies',
+          tooltip: 'Our internal team monitor and reply to prospect messages on time',
+          included: false
         },
-        { 
-          name: 'Daily Stats', 
+        {
+          name: 'Custom Landing Page',
+          tooltip: 'Professionally built and fully hosted landing page with your branding',
+          included: true
+        },
+        {
+          name: 'Advanced Personalisation',
+          tooltip: 'Personalise the landing page content with each prospects name',
+          included: true
+        },
+        {
+          name: 'Pro AI Voice Clone',
+          tooltip: 'Choose an AI voiceover or we can clone your own',
+          included: true
+        },
+        {
+          name: 'Daily Stats',
           tooltip: 'Comprehensive daily performance metrics and insights',
-          included: true 
+          included: true
         },
-        { 
-          name: 'Priority Support', 
-          tooltip: 'Chat, Email & Live Slack Support with priority response',
-          included: true 
+        {
+          name: 'CRM Integration',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho',
+          included: true
+        },
+        {
+          name: '200 Video Credits/month',
+          tooltip: 'Credits for creating and customising video templates with advanced features',
+          included: true
+        },
+        {
+          name: '2x 30 second Ad Videos',
+          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
+          included: true
+        },
+        {
+          name: 'Automated Video Workflows',
+          tooltip: 'Custom built workflows to automate video production',
+          included: false
+        },
+        {
+          name: 'One-Off Bespoke 60s Video',
+          tooltip: 'Bespoke, high quality product/brand explainer video',
+          included: false
+        },
+        {
+          name: 'Priority Support',
+          tooltip: 'Chat, Email & Live Slack Support',
+          included: true
         }
       ],
       gradient: 'from-[#2A5EDB]/40 to-[#4C7AE6]/40',
@@ -523,64 +543,89 @@ const ModernShowcase = () => {
       price: '1699',
       description: 'For high-volume, multi-channel outreach',
       features: [
-        { 
-          name: '10,000 AI Emails/month', 
-          tooltip: 'Enterprise-level AI email generation with advanced personalization',
-          included: true 
+        {
+          name: 'Up to 50 Users',
+          included: true
         },
-        { 
-          name: 'Up to 50 Users', 
-          included: true 
+        {
+          name: '10,000 AI Emails/month',
+          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content',
+          included: true
         },
-        { 
-          name: '500 Video Credits/month', 
-          tooltip: 'Extended video credits for large-scale campaign creation',
-          included: true 
+        {
+          name: 'Weekly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews',
+          included: true
         },
-        { 
-          name: 'A/B Testing Suite', 
-          tooltip: 'Advanced landing page A/B testing and optimization tools',
-          included: true 
+        {
+          name: '5,000 B2B Contacts/month',
+          tooltip: 'Fresh, verified B2B contact data for your target market',
+          included: true
         },
-        { 
-          name: 'Pro Voice Clone', 
-          tooltip: 'Create custom AI voices with full accent and tone control',
-          included: true 
+        {
+          name: 'Deliverability Setup & Management',
+          tooltip: 'Our dedicated team ensure maximum message delivery',
+          included: true
         },
-        { 
-          name: 'Weekly Strategy', 
-          tooltip: 'Weekly optimization and strategy sessions with our team',
-          included: true 
+        {
+          name: 'Smart Follow-ups',
+          tooltip: 'AI-powered follow-up sequences based on prospect behavior',
+          included: true
         },
-        { 
-          name: '5,000 B2B Contacts/month', 
-          tooltip: 'Extended database of verified B2B contacts with enriched data',
-          included: true 
+        {
+          name: 'Managed Replies',
+          tooltip: 'Our internal team monitor and reply to prospect messages on time',
+          included: true
         },
-        { 
-          name: 'Full Channel Suite', 
-          tooltip: 'Integrated email and LinkedIn automation with advanced features',
-          included: true 
+        {
+          name: 'Custom Landing Page',
+          tooltip: 'Professionally built and fully hosted landing page with your branding',
+          included: true
         },
-        { 
-          name: 'Reply Management', 
-          tooltip: 'Automated reply handling and conversation management',
-          included: true 
+        {
+          name: 'Hyper Personalisation',
+          tooltip: 'Personalise the landing page content with each prospects name as well as intro sentence',
+          included: true
         },
-        { 
-          name: 'Real-time Alerts', 
-          tooltip: 'Instant notifications for important prospect interactions',
-          included: true 
+        {
+          name: 'Pro AI Voice Clone',
+          tooltip: 'Choose an AI voiceover or we can clone your own',
+          included: true
         },
-        { 
-          name: 'CRM Integration', 
-          tooltip: 'Deep integration with major CRM platforms',
-          included: true 
+        {
+          name: 'Live Stats',
+          tooltip: 'Live performance metrics and insights, directly to your messaging platform',
+          included: true
         },
-        { 
-          name: 'Enterprise Support', 
-          tooltip: '24/7 priority support with dedicated account manager',
-          included: true 
+        {
+          name: 'CRM Integration',
+          tooltip: 'All + Salesforce & Custom API',
+          included: true
+        },
+        {
+          name: '500 Video Credits/month',
+          tooltip: 'Credits for creating and customising video templates with advanced features',
+          included: true
+        },
+        {
+          name: '2x 30 second Ad Videos',
+          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
+          included: true
+        },
+        {
+          name: 'Automated Video Workflows',
+          tooltip: 'Custom built workflows to automate video production',
+          included: false
+        },
+        {
+          name: 'One-Off Bespoke 60s Video',
+          tooltip: 'Bespoke, high quality product/brand explainer video',
+          included: false
+        },
+        {
+          name: 'Priority Support',
+          tooltip: 'Chat, Email & Live Slack Support',
+          included: true
         }
       ],
       gradient: 'from-[#03AD9C]/40 to-[#06C4B0]/40',
@@ -1127,8 +1172,9 @@ const ModernShowcase = () => {
                             Get Started
                           </motion.button>
                         </div>
-                        <div className="border-t border-white/10 p-8">
-                          <ul className="space-y-6">
+                        <div className="border-t border-white/10 p-6">
+                          <p className="text-sm font-medium text-white/80 mb-4">What's included:</p>
+                          <ul className="space-y-3">
                             {plan.features.map((feature, i) => (
                               <li key={i} className="group relative flex items-start gap-3">
                                 {feature.included ? (
