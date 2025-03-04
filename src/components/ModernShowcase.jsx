@@ -52,22 +52,26 @@ const ModernShowcase = () => {
       subtext: 'AI-Powered lead generation & nurturing',
       features: [
         {
-          title: 'Personalized Video Content',
-          description: 'Create custom video messages and landing pages tailored to each prospect, with dynamic personalization that adapts to viewer data.'
+          title: 'Personalised AI Emails with Video',
+          description: 'Grab and hold attention with custom video messages, researched and tailored to each prospect. Linking to dynamic, personalised landing pages.'
         },
         {
-          title: 'Advanced Data Intelligence',
-          description: 'Comprehensive data sourcing and ICP analysis to identify and target your ideal B2B prospects with precision.'
-        },
-        {
-          title: 'Full-Funnel Engagement',
-          description: 'Seamless top and middle funnel strategies including email outreach, retargeting, and paid advertising for consistent engagement.'
+          title: 'Advanced Data Sourcing',
+          description: 'Comprehensive data sourcing using Ideal Customer Profile analysis to identify your most appropriate B2B prospects with precision.'
         },
         {
           title: 'Dedicated Success Team',
-          description: 'Our optimization experts continuously refine your campaigns using data-driven insights and industry best practices.'
+          description: 'Our internal optimisation experts continuously refine and improve your campaigns using data-driven insights and industry leading practices.'
+        },
+        {
+          title: 'Full-Funnel & Multi-Channel',
+          description: 'Seamless top and middle funnel strategies that utilise email outreach, paid advertising and smart retargeting for consistent engagement.'
         }
       ],
+      additionalInfo: {
+        integration: 'All of this feeds automatically into your CRM, live notifications and our live Analytics Dashboard.',
+        compatibility: 'Works hand-in-hand with our Personalised Landing Pages and Bespoke Content Creation.'
+      },
       solutions: ['outreach-solution']
     },
     {
@@ -75,53 +79,59 @@ const ModernShowcase = () => {
       title: 'Personalised Landing Pages',
       icon: <Globe className="w-8 h-8" />,
       color: 'bg-gradient-to-br from-[#2A5EDB]/40 to-[#4C7AE6]/40 hover:from-[#2A5EDB] hover:to-[#4C7AE6]',
-      description: 'Dynamic pages that adapt to each visitor',
+      description: 'Dynamic pages that adapt to every visitor',
       subtext: 'Real-time personalization engine',
       features: [
         {
-          title: 'Intelligent Personalization',
-          description: 'Pages dynamically adapt to each visitor using real-time data, company information, and behavioral insights to create a truly personalized experience.'
+          title: 'Intelligent Personalisation',
+          description: 'Pages dynamically adapt to each visitor using real-time data, company information and behavioural insights to create a truly personalised experience for every visitor.'
         },
         {
           title: 'Custom Video Integration',
-          description: 'Embed personalized videos that speak directly to your prospect, featuring their name, company details, and tailored messaging with AI-powered voiceovers.'
+          description: 'Embed quality, personalised videos that speak directly to your prospect, featuring their name and tailored messaging and voiceovers.'
         },
         {
-          title: 'Smart Content Engine',
-          description: 'Our AI automatically selects and displays the most relevant case studies, testimonials, and product features based on the visitor\'s industry and role.'
+          title: 'Dynamic AI Voiceovers',
+          description: 'Our AI automatically crafts custom voiceovers to hold viewer engagement and send messages that truly resonate.'
         },
         {
           title: 'Advanced Analytics & Testing',
-          description: 'Built-in A/B testing and detailed analytics help optimize your pages, while real-time tracking shows exactly how prospects engage with your content.'
+          description: 'Our pages feature built-in user analytics with real time tracking to show exactly how prospects engage with your content.'
         }
       ],
+      additionalInfo: {
+        compatibility: 'Works hand-in-hand with our Multi Channel Outreach and Bespoke Content Creation.'
+      },
       solutions: ['landing-solution']
     },
     {
       id: 'content',
-      title: 'Create More Content',
+      title: 'Bespoke Video Content',
       icon: <FileVideo className="w-8 h-8" />,
       color: 'bg-gradient-to-br from-[#03AD9C]/40 to-[#06C4B0]/40 hover:from-[#03AD9C] hover:to-[#06C4B0]',
       description: 'Scale your video content effortlessly',
       subtext: 'AI-powered video automation',
       features: [
         {
+          title: 'Bespoke Video Production',
+          description: 'Our expert in-house media team are on hand to craft incredible videos for adverts, product explainers and motion graphics to elevate your brand.'
+        },
+        {
           title: 'Autonomous Content AI',
-          description: 'Our AI agent automatically monitors your website and creates brand-aligned videos from your content using pre-approved templates vetted by your marketing team.'
+          description: 'Our AI agent automatically monitors your website and creates brand-aligned videos using pre-approved templates vetted by your marketing team.'
         },
         {
-          title: 'Developer-Friendly API',
-          description: 'Integrate video creation directly into your workflow with our robust API. Generate, customize, and retrieve videos programmatically for seamless automation.'
+          title: 'Smart Rebuildable Template System',
+          description: 'Mix and match from our pre-built templates to create unique videos in minutes. All templates merge brand consistency with creative flexibility.'
         },
         {
-          title: 'Smart Template System',
-          description: 'Mix and match from hundreds of pre-built segments to create unique videos in minutes. All templates maintain brand consistency while allowing for creative flexibility.'
-        },
-        {
-          title: 'Enterprise Production Suite',
-          description: 'Access professional production tools, cloud rendering for bulk creation, and our expert team for custom animations and voiceovers that elevate your brand.'
+          title: 'Developer Friendly API',
+          description: 'Integrate video creation directly into your workflows with our robust API. Generate, customise and retrieve videos programmatically for seamless automation.'
         }
       ],
+      additionalInfo: {
+        compatibility: 'Works hand-in-hand with our Multi Channel Outreach and our Personalised Landing Pages.'
+      },
       solutions: ['content-solution']
     },
     {
@@ -1029,6 +1039,31 @@ const ModernShowcase = () => {
                           </motion.div>
                         ))}
                       </div>
+                      
+                      {/* Additional Information Section */}
+                      {(selectedChallenge.additionalInfo?.integration || selectedChallenge.additionalInfo?.compatibility) && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.6 }}
+                          className="space-y-6"
+                        >
+                          {selectedChallenge.additionalInfo.integration && (
+                            <div className="p-6 rounded-xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-xl">
+                              <p className="text-white/80 text-lg leading-relaxed">
+                                {selectedChallenge.additionalInfo.integration}
+                              </p>
+                            </div>
+                          )}
+                          {selectedChallenge.additionalInfo.compatibility && (
+                            <div className="p-6 rounded-xl bg-gradient-to-br from-white/[0.02] to-white/[0.04] border border-white/[0.05] backdrop-blur-xl">
+                              <p className="text-white/80 text-lg leading-relaxed">
+                                {selectedChallenge.additionalInfo.compatibility}
+                              </p>
+                            </div>
+                          )}
+                        </motion.div>
+                      )}
                     </div>
                   </motion.div>
                 </div>
