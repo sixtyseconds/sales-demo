@@ -420,10 +420,6 @@ const ModernShowcase = () => {
       description: 'Perfect for small teams testing video outreach',
       features: [
         {
-          name: 'Up to 3 Users',
-          included: true
-        },
-        {
           name: '500 Self-Serve AI Video Messages/month',
           tooltip: 'Create personalised video messages with AI-powered customisation for each prospect',
           included: true
@@ -489,11 +485,6 @@ const ModernShowcase = () => {
           included: false
         },
         {
-          name: '50 Video Credits/month',
-          tooltip: 'Credits for creating and rebuilding your video templates',
-          included: true
-        },
-        {
           name: 'Automated Video Workflows',
           tooltip: 'Custom built workflows to automate video production',
           included: false
@@ -517,10 +508,6 @@ const ModernShowcase = () => {
       price: '999',
       description: 'Ideal for SMEs scaling engagement & automation',
       features: [
-        {
-          name: 'Up to 10 Users',
-          included: true
-        },
         {
           name: '4,000 AI Emails/month',
           tooltip: 'We generate and send personalised AI-crafted emails with embedded video content',
@@ -587,11 +574,6 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: '200 Video Credits/month',
-          tooltip: 'Credits for creating and customising video templates with advanced features',
-          included: true
-        },
-        {
           name: 'Automated Video Workflows',
           tooltip: 'Custom built workflows to automate video production',
           included: false
@@ -616,10 +598,6 @@ const ModernShowcase = () => {
       price: '1699',
       description: 'For high-volume, multi-channel outreach',
       features: [
-        {
-          name: 'Up to 50 Users',
-          included: true
-        },
         {
           name: '10,000 AI Emails/month',
           tooltip: 'We generate and send personalised AI-crafted emails with embedded video content',
@@ -683,11 +661,6 @@ const ModernShowcase = () => {
         {
           name: 'Live Stats',
           tooltip: 'Live performance metrics and insights, directly to your messaging platform',
-          included: true
-        },
-        {
-          name: '500 Video Credits/month',
-          tooltip: 'Credits for creating and customising video templates with advanced features',
           included: true
         },
         {
