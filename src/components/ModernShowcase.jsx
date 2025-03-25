@@ -9,6 +9,123 @@ import {
   Clock, Search, Zap, MousePointer, Check
 } from 'lucide-react';
 
+// Challenge Card Component
+const ChallengeCard = ({ challenge, index, handleNavigation, hoveredCard, setHoveredCard }) => {
+  const cardVariants = {
+    initial: { scale: 0.95, y: 0 },
+    hover: { 
+      scale: 1.02, 
+      y: -8,
+      transition: { 
+        type: "spring",
+        stiffness: 400,
+        damping: 25
+      }
+    }
+  };
+
+  const iconVariants = {
+    initial: { rotate: 0, scale: 1 },
+    hover: { 
+      rotate: [0, -10, 10, 0],
+      scale: [1, 1.1, 1.1, 1],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const itemVariants = {
+    initial: { y: 30, opacity: 0 },
+    animate: { 
+      y: 0, 
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25
+      }
+    }
+  };
+  
+  return (
+    <motion.div
+      variants={itemVariants}
+      whileHover="hover"
+      onHoverStart={() => setHoveredCard(challenge.id)}
+      onHoverEnd={() => setHoveredCard(null)}
+      onClick={() => {
+        handleNavigation('solutions', challenge);
+      }}
+      className={`group cursor-pointer rounded-2xl p-8 md:p-10 ${challenge.color}
+        relative overflow-hidden transform-gpu
+        shadow-[0_0_30px_rgba(255,255,255,0.05)]
+        hover:shadow-[0_0_50px_rgba(255,255,255,0.15)]
+        transition-all duration-500`}
+    >
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"
+        initial={false}
+        animate={hoveredCard === challenge.id ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      />
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-b from-white/[0.15] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+      />
+      <div className="relative z-10">
+        <div className="flex items-start gap-6 md:gap-8">
+          <motion.div 
+            variants={iconVariants}
+            className="p-4 md:p-5 rounded-xl bg-white/10 backdrop-blur-sm
+              shadow-[0_0_15px_rgba(255,255,255,0.05)]
+              group-hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]
+              group-hover:bg-white/20
+              transition-all duration-500"
+          >
+            {challenge.icon}
+          </motion.div>
+          <div className="flex-1">
+            <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white leading-[1.3]">
+              {challenge.title}
+            </h3>
+            <p className="text-white text-lg md:text-xl mb-2 leading-[1.4]">
+              {challenge.description}
+            </p>
+            <p className="text-white/80 text-base md:text-lg leading-[1.4]">
+              {challenge.subtext}
+            </p>
+          </div>
+        </div>
+        <motion.div 
+          className="mt-6 md:mt-8 flex items-center gap-4 text-white"
+        >
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 font-medium flex items-center gap-2"
+          >
+            <PlayCircle className="w-5 h-5" />
+            Watch Demo
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleNavigation('pricing');
+            }}
+            className="px-5 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 font-medium"
+          >
+            View Pricing
+          </motion.button>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
 const ModernShowcase = () => {
   const navigate = useNavigate();
   const { challengeId } = useParams();
@@ -872,79 +989,14 @@ const ModernShowcase = () => {
                   className="flex-1 max-w-7xl mx-auto px-4 py-2 grid md:grid-cols-2 gap-6 md:gap-8 items-start relative z-20"
                 >
                   {challenges.map((challenge, index) => (
-                    <motion.div
+                    <ChallengeCard
                       key={challenge.id}
-                      variants={itemVariants}
-                      whileHover="hover"
-                      onHoverStart={() => setHoveredCard(challenge.id)}
-                      onHoverEnd={() => setHoveredCard(null)}
-                      onClick={() => {
-                        handleNavigation('solutions', challenge);
-                      }}
-                      className={`group cursor-pointer rounded-2xl p-8 md:p-10 ${challenge.color}
-                        relative overflow-hidden transform-gpu
-                        shadow-[0_0_30px_rgba(255,255,255,0.05)]
-                        hover:shadow-[0_0_50px_rgba(255,255,255,0.15)]
-                        transition-all duration-500`}
-                    >
-                      <motion.div 
-                        className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"
-                        initial={false}
-                        animate={hoveredCard === challenge.id ? { opacity: 0 } : { opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                      <motion.div 
-                        className="absolute inset-0 bg-gradient-to-b from-white/[0.15] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      />
-                      <div className="relative z-10">
-                        <div className="flex items-start gap-6 md:gap-8">
-                          <motion.div 
-                            variants={iconVariants}
-                            className="p-4 md:p-5 rounded-xl bg-white/10 backdrop-blur-sm
-                              shadow-[0_0_15px_rgba(255,255,255,0.05)]
-                              group-hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]
-                              group-hover:bg-white/20
-                              transition-all duration-500"
-                          >
-                            {challenge.icon}
-                          </motion.div>
-                          <div className="flex-1">
-                            <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white leading-[1.3]">
-                              {challenge.title}
-                            </h3>
-                            <p className="text-white text-lg md:text-xl mb-2 leading-[1.4]">
-                              {challenge.description}
-                            </p>
-                            <p className="text-white/80 text-base md:text-lg leading-[1.4]">
-                              {challenge.subtext}
-                            </p>
-                          </div>
-                        </div>
-                        <motion.div 
-                          className="mt-6 md:mt-8 flex items-center gap-4 text-white"
-                        >
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 font-medium flex items-center gap-2"
-                          >
-                            <PlayCircle className="w-5 h-5" />
-                            Watch Demo
-                          </motion.button>
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleNavigation('pricing');
-                            }}
-                            className="px-5 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 font-medium"
-                          >
-                            View Pricing
-                          </motion.button>
-                        </motion.div>
-                      </div>
-                    </motion.div>
+                      challenge={challenge}
+                      index={index}
+                      handleNavigation={handleNavigation}
+                      hoveredCard={hoveredCard}
+                      setHoveredCard={setHoveredCard}
+                    />
                   ))}
                 </motion.div>
               </motion.div>
