@@ -1,0 +1,17 @@
+{
+  "mcp": {
+    "github": {
+      "repository": "sixtyseconds/sales-demo",
+      "branch": "development",
+      "remote": "origin",
+      "url": "https://github.com/sixtyseconds/sales-demo.git",
+      "defaultBranch": "main",
+      "protectedBranches": ["main", "development"],
+      "commitMessageTemplate": "feat: {message}",
+      "prTemplate": {
+        "title": "feat: {title}",
+        "description": "## Description\n{description}\n\n## Changes\n{changes}\n\n## Testing\n{testing}"
+      }
+    }
+  }
+} 
