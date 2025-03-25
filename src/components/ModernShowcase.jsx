@@ -27,17 +27,20 @@ const ModernShowcase = () => {
   const [navigationHistory, setNavigationHistory] = useState(['challenges']);
 
   const audienceTypes = [
-    'content',
-    'outreach',
     'recruiting',
-    'prospecting',
     'sourcing',
-    'research',
-    'data entry',
-    'enrichment',
     'video',
+    'enrichment',
     'sales',
-    'marketing'
+    'content',
+    'prospecting',
+    'data entry',
+    'marketing',
+    'new audiences',
+    'leads',
+    'referrals',
+    'prospects',
+    'candidates'
   ];
 
   const colors = [
@@ -390,7 +393,7 @@ const ModernShowcase = () => {
     const interval = setInterval(() => {
       setAudienceIndex((current) => (current + 1) % shuffledAudience.length);
       setCurrentColor((current) => (current + 1) % colors.length);
-    }, 3500);
+    }, 3000);
     return () => clearInterval(interval);
   }, [isAnimationStarted, shuffledAudience]);
 
@@ -420,85 +423,75 @@ const ModernShowcase = () => {
       description: 'Perfect for small teams testing video outreach',
       features: [
         {
-          name: '500 Self-Serve AI Video Messages/month',
-          tooltip: 'Create personalised video messages with AI-powered customisation for each prospect',
+          name: '500 Self-Serve AI Video Emails/month',
+          tooltip: 'Create personalised video messages with AI-powered customisation for each prospect.',
           included: true
         },
         {
-          name: 'B2B Contact Sourcing',
-          tooltip: 'Fresh, verified B2B contact data for your target market',
-          included: false
-        },
-        {
-          name: 'Optimisation Team',
-          tooltip: 'Dedicated team for campaign optimisation and strategy',
-          included: false
-        },
-        {
-          name: 'Campaign Optimisation',
-          tooltip: 'Regular campaign optimisation and performance reviews',
-          included: false
-        },
-        {
-          name: 'Deliverability Setup & Management',
-          tooltip: 'Our dedicated team ensure maximum message delivery',
-          included: false
-        },
-        {
-          name: 'Smart Follow-ups',
-          tooltip: 'AI-powered follow-up sequences based on prospect behaviour',
-          included: false
-        },
-        {
-          name: 'Managed Replies',
-          tooltip: 'Our internal team monitor and reply to prospect messages on time',
-          included: false
-        },
-        {
-          name: 'Basic Self-Hosted Landing Page',
-          tooltip: 'Default landing page template ready for DIY WordPress/Webflow Integration',
+          name: 'Basic Template Landing Page',
+          tooltip: 'We host a template landing page ready that auto populates with your selected video.',
           included: true
-        },
-        {
-          name: '2x 30 second Ad Videos',
-          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
-          included: false
         },
         {
           name: 'Basic Personalisation',
-          tooltip: 'Personalise the landing page content with each prospects name',
+          tooltip: 'Personalise the landing page content with each prospects name.',
           included: true
         },
         {
           name: 'Self-Serve AI VoiceOver',
-          tooltip: 'Add your own professional clone voiceovers using AI technology',
+          tooltip: 'Add your own professional voiceovers using AI technology.',
           included: true
         },
         {
+          name: 'Standard Support',
+          tooltip: 'Chat & Email Support during business hours.',
+          included: true
+        },
+        {
+          name: 'B2B Contact Sourcing',
+          tooltip: 'Fresh, verified B2B contact data for your target market.',
+          included: false
+        },
+        {
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy.',
+          included: false
+        },
+        {
+          name: 'Campaign Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews.',
+          included: false
+        },
+        {
+          name: 'Deliverability Setup & Management',
+          tooltip: 'Our dedicated team ensure maximum message delivery.',
+          included: false
+        },
+        {
+          name: 'Smart Follow-ups',
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
+          included: false
+        },
+        {
+          name: 'Ad Videos',
+          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention.',
+          included: false
+        },
+        {
           name: 'CRM Integration',
-          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho.',
           included: false
         },
         {
           name: 'Stats Updates',
-          tooltip: 'Comprehensive performance metrics and insights',
+          tooltip: 'Comprehensive performance metrics and insights.',
           included: false
         },
         {
-          name: 'Automated Video Workflows',
-          tooltip: 'Custom built workflows to automate video production',
+          name: 'Managed Replies',
+          tooltip: 'Our internal team monitor and reply to prospect messages on time.',
           included: false
-        },
-        {
-          name: 'One-Off Bespoke 60s Video',
-          tooltip: 'Bespoke, high quality product/brand explainer video',
-          included: false
-        },
-        {
-          name: 'Standard Support',
-          tooltip: 'Chat & Email Support during business hours',
-          included: true
-        },
+        }
       ],
       gradient: 'from-[#8129D7]/40 to-[#9747FF]/40',
       buttonGradient: 'from-[#8129D7] to-[#9747FF]'
@@ -509,84 +502,74 @@ const ModernShowcase = () => {
       description: 'Ideal for SMEs scaling engagement & automation',
       features: [
         {
-          name: '4,000 AI Emails/month',
-          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content',
+          name: '4,000 AI Video Emails/month',
+          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content.',
           included: true
-        },
-        {
-          name: '2,000 B2B Contacts/month',
-          tooltip: 'Fresh, verified B2B contact data for your target market',
-          included: true
-        },
-        {
-          name: 'Optimisation Team',
-          tooltip: 'Dedicated team for campaign optimisation and strategy',
-          included: true
-        },
-        {
-          name: 'Monthly Optimisation',
-          tooltip: 'Regular campaign optimisation and performance reviews',
-          included: true
-        },
-        {
-          name: 'Deliverability Setup & Management',
-          tooltip: 'Our dedicated team ensure maximum message delivery',
-          included: true
-        },
-        {
-          name: 'Smart Follow-ups',
-          tooltip: 'AI-powered follow-up sequences based on prospect behaviour',
-          included: true
-        },
-        {
-          name: 'Managed Replies',
-          tooltip: 'Our internal team monitor and reply to prospect messages on time',
-          included: false
         },
         {
           name: 'Custom Landing Page',
-          tooltip: 'Professionally built and fully hosted landing page with your branding',
-          included: true
-        },
-        {
-          name: '2x 30 second Ad Videos',
-          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
+          tooltip: 'Professionally built and fully hosted landing page with your branding.',
           included: true
         },
         {
           name: 'Advanced Personalisation',
-          tooltip: 'Personalise the landing page content with each prospects name',
+          tooltip: 'Personalise the landing page content with each prospects name.',
           included: true
         },
         {
-          name: 'Pro AI Voice Clone',
-          tooltip: 'Choose an AI voiceover or we can clone your own',
+          name: 'Pro AI Voice',
+          tooltip: 'Choose a ProAI voiceover to hold engagement.',
+          included: true
+        },
+        {
+          name: 'Priority Support',
+          tooltip: 'Chat, Email & Live Slack Support.',
+          included: true
+        },
+        {
+          name: '2,000 B2B Contacts/month',
+          tooltip: 'Fresh, verified B2B contact data for your target market.',
+          included: true
+        },
+        {
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy.',
+          included: true
+        },
+        {
+          name: 'Monthly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews.',
+          included: true
+        },
+        {
+          name: 'Deliverability Setup & Management',
+          tooltip: 'Our dedicated team ensure maximum message delivery.',
+          included: true
+        },
+        {
+          name: 'Smart Follow-ups',
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
+          included: true
+        },
+        {
+          name: '2x 30 second Ad Videos',
+          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention.',
           included: true
         },
         {
           name: 'CRM Integration',
-          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho.',
           included: true
         },
         {
           name: 'Daily Stats',
-          tooltip: 'Comprehensive daily performance metrics and insights',
+          tooltip: 'Comprehensive daily performance metrics and insights.',
           included: true
         },
         {
-          name: 'Automated Video Workflows',
-          tooltip: 'Custom built workflows to automate video production',
+          name: 'Managed Replies',
+          tooltip: 'Our internal team monitor and reply to prospect messages on time.',
           included: false
-        },
-        {
-          name: 'One-Off Bespoke 60s Video',
-          tooltip: 'Bespoke, high quality product/brand explainer video',
-          included: false
-        },
-        {
-          name: 'Priority Support',
-          tooltip: 'Chat, Email & Live Slack Support',
-          included: true
         }
       ],
       gradient: 'from-[#2A5EDB]/40 to-[#4C7AE6]/40',
@@ -599,83 +582,73 @@ const ModernShowcase = () => {
       description: 'For high-volume, multi-channel outreach',
       features: [
         {
-          name: '10,000 AI Emails/month',
-          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content',
-          included: true
-        },
-        {
-          name: '5,000 B2B Contacts/month',
-          tooltip: 'Fresh, verified B2B contact data for your target market',
-          included: true
-        },
-        {
-          name: 'Optimisation Team',
-          tooltip: 'Dedicated team for campaign optimisation and strategy',
-          included: true
-        },
-        {
-          name: 'Weekly Optimisation',
-          tooltip: 'Regular campaign optimisation and performance reviews',
-          included: true
-        },
-        {
-          name: 'Deliverability Setup & Management',
-          tooltip: 'Our dedicated team ensure maximum message delivery',
-          included: true
-        },
-        {
-          name: 'Smart Follow-ups',
-          tooltip: 'AI-powered follow-up sequences based on prospect behaviour',
-          included: true
-        },
-        {
-          name: 'Managed Replies',
-          tooltip: 'Our internal team monitor and reply to prospect messages on time',
+          name: '10,000 AI Video Emails/month',
+          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content.',
           included: true
         },
         {
           name: 'Custom Landing Page',
-          tooltip: 'Professionally built and fully hosted landing page with your branding',
-          included: true
-        },
-        {
-          name: '2x 30 second Ad Videos',
-          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention',
+          tooltip: 'Professionally built and fully hosted landing page with your branding.',
           included: true
         },
         {
           name: 'Hyper Personalisation',
-          tooltip: 'Personalise the landing page content with each prospects name as well as intro sentence',
+          tooltip: 'Personalise the landing page content with each prospects name as well as intro sentence.',
           included: true
         },
         {
           name: 'Pro AI Voice Clone',
-          tooltip: 'Choose an AI voiceover or we can clone your own',
+          tooltip: 'Choose a Pro AI voiceover or we can clone your own.',
+          included: true
+        },
+        {
+          name: 'Priority Support',
+          tooltip: 'Chat, Email & Live Slack Support.',
+          included: true
+        },
+        {
+          name: '5,000 B2B Contacts/month',
+          tooltip: 'Fresh, verified B2B contact data for your target market.',
+          included: true
+        },
+        {
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy.',
+          included: true
+        },
+        {
+          name: 'Weekly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews.',
+          included: true
+        },
+        {
+          name: 'Deliverability Setup & Management',
+          tooltip: 'Our dedicated team ensure maximum message delivery.',
+          included: true
+        },
+        {
+          name: 'Smart Follow-ups',
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
+          included: true
+        },
+        {
+          name: '4x 30 second Ad Videos',
+          tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention.',
           included: true
         },
         {
           name: 'CRM Integration',
-          tooltip: 'All + Salesforce & Custom API',
+          tooltip: 'All + Salesforce & Custom API.',
           included: true
         },
         {
           name: 'Live Stats',
-          tooltip: 'Live performance metrics and insights, directly to your messaging platform',
+          tooltip: 'Live performance metrics and insights, directly to your messaging platform.',
           included: true
         },
         {
-          name: 'Automated Video Workflows',
-          tooltip: 'Custom built workflows to automate video production',
-          included: false
-        },
-        {
-          name: 'One-Off Bespoke 60s Video',
-          tooltip: 'Bespoke, high quality product/brand explainer video',
-          included: false
-        },
-        {
-          name: 'Priority Support',
-          tooltip: 'Chat, Email & Live Slack Support',
+          name: 'Managed Replies',
+          tooltip: 'Our internal team monitor and reply to prospect messages on time.',
           included: true
         }
       ],
@@ -768,7 +741,7 @@ const ModernShowcase = () => {
             <LayoutGroup>
               <motion.div
                 key="challenges"
-                className="min-h-[96vh] flex flex-col relative z-10"
+                className="min-h-[96vh] flex flex-col justify-between relative z-10"
                 {...fadeIn}
               >
                 {/* Enhanced Header with stagger animation */}
@@ -778,12 +751,6 @@ const ModernShowcase = () => {
                   animate="animate"
                   className="pt-6 md:pt-12 pb-6 md:pb-8 text-center px-4 relative z-20"
                 >
-                  <motion.div
-                    variants={itemVariants}
-                    className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/5 text-sm font-medium text-white/90 backdrop-blur-xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.05)]"
-                  >
-                    Your business in motion
-                  </motion.div>
                   <motion.h1 
                     variants={itemVariants}
                     className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight relative"
@@ -794,74 +761,92 @@ const ModernShowcase = () => {
                   </motion.h1>
                   <motion.p 
                     variants={itemVariants}
-                    className="text-white/60 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-[1.6] mb-4"
+                    className="text-white/60 text-base md:text-xl lg:text-2xl max-w-4xl mx-auto font-light leading-[1.6] mb-4"
                   >
-                    We build systems that find, research and outreach with personalised content
-                  </motion.p>
-                  <div className="flex items-center justify-center gap-x-2">
-                    <motion.div
-                      key={`for-${shuffledAudience[audienceIndex]}`}
-                      initial={{ opacity: 0, y: 30 }}
+                    We build systems for&nbsp;
+                    <motion.span
+                      key={`word-system-${shuffledAudience[audienceIndex]}-${currentColor}`}
+                      initial={{ opacity: 0, y: 20 }}
                       animate={{ 
-                        opacity: [0, 1, 1, 1, 0],
-                        y: [30, 0, 0, 0, -30],
+                        opacity: [0, 1, 1, 0],
+                        y: [20, 0, 0, -20]
                       }}
                       transition={{
-                        duration: 3.5,
-                        times: [0, 0.15, 0.7, 0.85, 1],
+                        duration: 3,
+                        times: [0, 0.2, 0.8, 1],
                         ease: [0.64, 0.112, 0.32, 1]
                       }}
-                      className="text-2xl md:text-3xl lg:text-4xl font-bold text-white"
-                    >
-                      for
-                    </motion.div>
-                    <motion.div
-                      key={`word-${shuffledAudience[audienceIndex]}-${currentColor}`}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ 
-                        opacity: [0, 0, 1, 1, 1, 0],
-                        y: [30, 30, 0, 0, 0, -30],
-                      }}
-                      transition={{
-                        duration: 3.5,
-                        times: [0, 0.15, 0.25, 0.65, 0.85, 1],
-                        ease: [0.64, 0.112, 0.32, 1]
-                      }}
-                      className="text-2xl md:text-3xl lg:text-4xl font-bold relative"
+                      className="font-medium relative inline-block min-w-[120px] text-center"
                     >
                       <motion.span
                         initial={{ color: "#FFFFFF" }}
                         animate={{
                           color: [
                             "#FFFFFF",
-                            "#FFFFFF",
                             colors[currentColor].color, 
                             colors[currentColor].color, 
-                            "#FFFFFF",
                             "#FFFFFF"
                           ],
                           textShadow: [
                             "0 0 20px rgba(255,255,255,0)",
-                            "0 0 20px rgba(255,255,255,0)",
                             `0 0 25px ${colors[currentColor].shadow}`,
                             `0 0 25px ${colors[currentColor].shadow}`,
-                            "0 0 20px rgba(255,255,255,0)",
                             "0 0 20px rgba(255,255,255,0)"
                           ]
                         }}
                         transition={{
-                          duration: 3.5,
-                          times: [0, 0.15, 0.25, 0.65, 0.85, 1],
+                          duration: 3,
+                          times: [0, 0.2, 0.8, 1],
                           ease: "easeInOut"
-                        }}
-                        style={{
-                          display: "inline-block"
                         }}
                       >
                         {shuffledAudience[audienceIndex]}
                       </motion.span>
-                    </motion.div>
-                  </div>
+                    </motion.span>
+                    &nbsp;and can find, research and outreach to&nbsp;
+                    <motion.span
+                      key={`word-audience-${shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}-${(currentColor + 1) % colors.length}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ 
+                        opacity: [0, 1, 1, 0],
+                        y: [20, 0, 0, -20]
+                      }}
+                      transition={{
+                        duration: 3,
+                        times: [0, 0.2, 0.8, 1],
+                        ease: [0.64, 0.112, 0.32, 1],
+                        delay: 0.5
+                      }}
+                      className="font-medium relative inline-block min-w-[120px] text-center"
+                    >
+                      <motion.span
+                        initial={{ color: "#FFFFFF" }}
+                        animate={{
+                          color: [
+                            "#FFFFFF",
+                            colors[(currentColor + 1) % colors.length].color, 
+                            colors[(currentColor + 1) % colors.length].color, 
+                            "#FFFFFF"
+                          ],
+                          textShadow: [
+                            "0 0 20px rgba(255,255,255,0)",
+                            `0 0 25px ${colors[(currentColor + 1) % colors.length].shadow}`,
+                            `0 0 25px ${colors[(currentColor + 1) % colors.length].shadow}`,
+                            "0 0 20px rgba(255,255,255,0)"
+                          ]
+                        }}
+                        transition={{
+                          duration: 3,
+                          times: [0, 0.2, 0.8, 1],
+                          ease: "easeInOut",
+                          delay: 0.5
+                        }}
+                      >
+                        {shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}
+                      </motion.span>
+                    </motion.span>
+                    &nbsp;with personalised content.
+                  </motion.p>
                 </motion.div>
 
                 {/* Challenge Grid */}
@@ -869,7 +854,7 @@ const ModernShowcase = () => {
                   variants={staggerContainer}
                   initial="initial"
                   animate="animate"
-                  className="flex-1 max-w-7xl mx-auto px-4 py-2 grid md:grid-cols-2 gap-6 md:gap-8 items-start relative z-20"
+                  className="max-w-7xl mx-auto px-4 py-2 grid md:grid-cols-2 gap-6 md:gap-8 items-start relative z-20"
                 >
                   {challenges.map((challenge, index) => (
                     <motion.div
@@ -946,6 +931,21 @@ const ModernShowcase = () => {
                       </div>
                     </motion.div>
                   ))}
+                </motion.div>
+
+                {/* Footer with Sixty Seconds text */}
+                <motion.div 
+                  variants={staggerContainer}
+                  initial="initial"
+                  animate="animate"
+                  className="w-full text-center pb-8 relative z-20 mt-8"
+                >
+                  <motion.div
+                    variants={itemVariants}
+                    className="inline-block px-4 py-1.5 rounded-full bg-white/5 text-sm font-medium text-white/90 backdrop-blur-xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+                  >
+                    Sixty Seconds - Your Business in Motion
+                  </motion.div>
                 </motion.div>
               </motion.div>
             </LayoutGroup>
@@ -1233,6 +1233,42 @@ const ModernShowcase = () => {
                                 )}
                               </li>
                             ))}
+                          </ul>
+                          <p className="text-sm font-medium text-white/80 mb-4 mt-6">Bolt Ons:</p>
+                          <ul className="space-y-3">
+                             <li className="group relative flex items-start gap-3">
+                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                <div className="w-1 h-1 rounded-full bg-white/20" />
+                              </div>
+                              <span className="text-sm text-white/40 leading-relaxed">
+                                Automated AI Workflows
+                              </span>
+                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                Custom built workflows to automate almost anything.
+                              </div>
+                            </li>
+                            <li className="group relative flex items-start gap-3">
+                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                <div className="w-1 h-1 rounded-full bg-white/20" />
+                              </div>
+                              <span className="text-sm text-white/40 leading-relaxed">
+                                Automated Video Workflows
+                              </span>
+                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                Custom built workflows to automate video production.
+                              </div>
+                            </li>
+                            <li className="group relative flex items-start gap-3">
+                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                <div className="w-1 h-1 rounded-full bg-white/20" />
+                              </div>
+                              <span className="text-sm text-white/40 leading-relaxed">
+                                One-Off Bespoke 60s Video
+                              </span>
+                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                Bespoke, high quality product/brand explainer video.
+                              </div>
+                            </li>
                           </ul>
                         </div>
                       </motion.div>
