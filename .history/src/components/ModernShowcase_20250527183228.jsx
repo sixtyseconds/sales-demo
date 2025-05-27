@@ -17,9 +17,10 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [selectedSolution, setSelectedSolution] = useState(null);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [workflowIndex, setWorkflowIndex] = useState(0);
+  const [audienceIndex, setAudienceIndex] = useState(0);
   const [currentColor, setCurrentColor] = useState(0);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
+  const [shuffledAudience, setShuffledAudience] = useState([]);
   const [showPricing, setShowPricing] = useState(initialShowPricing || false);
   const [selectedCurrency, setSelectedCurrency] = useState(currency || 'GBP');
   const [billingPeriod, setBillingPeriod] = useState('monthly');
@@ -110,47 +111,21 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
     return convertedText;
   };
 
-  const workflowDescriptions = [
-    {
-      type: 'AI',
-      purpose: 'attract more customers'
-    },
-    {
-      type: 'research',
-      purpose: 'uncover better leads'
-    },
-    {
-      type: 'data collection',
-      purpose: 'fuel smarter outreach'
-    },
-    {
-      type: 'verification',
-      purpose: 'clean and qualify your lists'
-    },
-    {
-      type: 'messaging',
-      purpose: 'say the right thing, every time'
-    },
-    {
-      type: 'outreach',
-      purpose: 'connect with decision-makers at scale'
-    },
-    {
-      type: 'multi-channel',
-      purpose: 'stay top-of-mind across every touchpoint'
-    },
-    {
-      type: 'video',
-      purpose: 'turn cold leads into warm conversations'
-    },
-    {
-      type: 'landing page',
-      purpose: 'deliver personalised microsites in one click'
-    },
-    {
-      type: 'analytics',
-      purpose: 'measure and optimise every interaction'
-    }
+  const audienceTypes = [
+    'recruiting',
+    'sourcing',
+    'video',
+    'enrichment',
+    'sales',
+    'content',
+    'prospecting',
+    'data entry',
+    'marketing',
+    'new audiences',
+    'leads',
+    'referrals',
+    'prospects',
+    'candidates'
   ];
 
   const colors = [
@@ -473,7 +448,20 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
     }
   };
 
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
+  // Add useEffect for shuffling on mount
+  useEffect(() => {
+    setShuffledAudience(shuffleArray(audienceTypes));
+  }, []);
 
   // Add useEffect for initial delay
   useEffect(() => {
@@ -485,14 +473,14 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
 
   // Modify the existing useEffect for rotation
   useEffect(() => {
-    if (!isAnimationStarted) return;
+    if (!isAnimationStarted || shuffledAudience.length === 0) return;
     
     const interval = setInterval(() => {
-      setWorkflowIndex((current) => (current + 1) % workflowDescriptions.length);
+      setAudienceIndex((current) => (current + 1) % shuffledAudience.length);
       setCurrentColor((current) => (current + 1) % colors.length);
-    }, 4000); // Slightly longer duration for readability
+    }, 3000);
     return () => clearInterval(interval);
-  }, [isAnimationStarted]);
+  }, [isAnimationStarted, shuffledAudience]);
 
   // Update useEffect to handle URL-based navigation
   useEffect(() => {
@@ -899,23 +887,22 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                   </motion.h1>
                   <motion.p 
                     variants={itemVariants}
-                    className="text-white/60 text-base md:text-xl lg:text-2xl max-w-5xl mx-auto font-light leading-[1.6] mb-4"
+                    className="text-white/60 text-base md:text-xl lg:text-2xl max-w-4xl mx-auto font-light leading-[1.6] mb-4"
                   >
-                    We build&nbsp;
+                    We build systems for&nbsp;
                     <motion.span
-                      key={`workflow-type-${workflowIndex}`}
-                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                      key={`word-system-${shuffledAudience[audienceIndex]}-${currentColor}`}
+                      initial={{ opacity: 0, y: 20 }}
                       animate={{ 
                         opacity: [0, 1, 1, 0],
-                        y: [15, 0, 0, -15],
-                        scale: [0.95, 1, 1, 0.95]
+                        y: [20, 0, 0, -20]
                       }}
                       transition={{
-                        duration: 4,
-                        times: [0, 0.15, 0.85, 1],
-                        ease: [0.25, 0.46, 0.45, 0.94]
+                        duration: 3,
+                        times: [0, 0.2, 0.8, 1],
+                        ease: [0.64, 0.112, 0.32, 1]
                       }}
-                      className="font-semibold relative inline-block"
+                      className="font-medium relative inline-block min-w-[120px] text-center"
                     >
                       <motion.span
                         initial={{ color: "#FFFFFF" }}
@@ -927,50 +914,36 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                             "#FFFFFF"
                           ],
                           textShadow: [
-                            "0 0 0px rgba(255,255,255,0)",
-                            `0 0 20px ${colors[currentColor].shadow}`,
-                            `0 0 20px ${colors[currentColor].shadow}`,
-                            "0 0 0px rgba(255,255,255,0)"
+                            "0 0 20px rgba(255,255,255,0)",
+                            `0 0 25px ${colors[currentColor].shadow}`,
+                            `0 0 25px ${colors[currentColor].shadow}`,
+                            "0 0 20px rgba(255,255,255,0)"
                           ]
                         }}
                         transition={{
-                          duration: 4,
-                          times: [0, 0.15, 0.85, 1],
+                          duration: 3,
+                          times: [0, 0.2, 0.8, 1],
                           ease: "easeInOut"
                         }}
-                        className="relative"
                       >
-                        {workflowDescriptions[workflowIndex].type}
-                        <motion.div
-                          className="absolute -bottom-1 left-0 h-0.5 bg-current"
-                          initial={{ width: "0%" }}
-                          animate={{
-                            width: ["0%", "100%", "100%", "0%"]
-                          }}
-                          transition={{
-                            duration: 4,
-                            times: [0, 0.15, 0.85, 1],
-                            ease: "easeInOut"
-                          }}
-                        />
+                        {shuffledAudience[audienceIndex]}
                       </motion.span>
                     </motion.span>
-                    &nbsp;workflows to help you&nbsp;
+                    &nbsp;and can find, research and outreach to&nbsp;
                     <motion.span
-                      key={`workflow-purpose-${workflowIndex}`}
-                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                      key={`word-audience-${shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}-${(currentColor + 1) % colors.length}`}
+                      initial={{ opacity: 0, y: 20 }}
                       animate={{ 
                         opacity: [0, 1, 1, 0],
-                        y: [15, 0, 0, -15],
-                        scale: [0.95, 1, 1, 0.95]
+                        y: [20, 0, 0, -20]
                       }}
                       transition={{
-                        duration: 4,
-                        times: [0, 0.15, 0.85, 1],
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                        delay: 0.1
+                        duration: 3,
+                        times: [0, 0.2, 0.8, 1],
+                        ease: [0.64, 0.112, 0.32, 1],
+                        delay: 0.5
                       }}
-                      className="font-semibold relative inline-block"
+                      className="font-medium relative inline-block min-w-[120px] text-center"
                     >
                       <motion.span
                         initial={{ color: "#FFFFFF" }}
@@ -982,37 +955,23 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                             "#FFFFFF"
                           ],
                           textShadow: [
-                            "0 0 0px rgba(255,255,255,0)",
-                            `0 0 20px ${colors[(currentColor + 1) % colors.length].shadow}`,
-                            `0 0 20px ${colors[(currentColor + 1) % colors.length].shadow}`,
-                            "0 0 0px rgba(255,255,255,0)"
+                            "0 0 20px rgba(255,255,255,0)",
+                            `0 0 25px ${colors[(currentColor + 1) % colors.length].shadow}`,
+                            `0 0 25px ${colors[(currentColor + 1) % colors.length].shadow}`,
+                            "0 0 20px rgba(255,255,255,0)"
                           ]
                         }}
                         transition={{
-                          duration: 4,
-                          times: [0, 0.15, 0.85, 1],
+                          duration: 3,
+                          times: [0, 0.2, 0.8, 1],
                           ease: "easeInOut",
-                          delay: 0.1
+                          delay: 0.5
                         }}
-                        className="relative"
                       >
-                        {convertSpelling(workflowDescriptions[workflowIndex].purpose)}
-                        <motion.div
-                          className="absolute -bottom-1 left-0 h-0.5 bg-current"
-                          initial={{ width: "0%" }}
-                          animate={{
-                            width: ["0%", "100%", "100%", "0%"]
-                          }}
-                          transition={{
-                            duration: 4,
-                            times: [0, 0.15, 0.85, 1],
-                            ease: "easeInOut",
-                            delay: 0.1
-                          }}
-                        />
+                        {shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}
                       </motion.span>
                     </motion.span>
-                    .
+                    &nbsp;with {convertSpelling('personalised')} content.
                   </motion.p>
                 </motion.div>
 
@@ -1249,15 +1208,10 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                     transition={{ delay: 0.2 }}
                     className="mx-auto text-center"
                   >
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight relative">
+                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
                       <span className="bg-gradient-to-br from-white via-white to-white/80 bg-clip-text text-transparent">
                         Scale Your Outreach, Your Way
                       </span>
-                      {currency && (
-                        <div className="absolute top-0 right-0 text-xs font-normal text-white/40 bg-white/5 px-2 py-1 rounded-md backdrop-blur-sm border border-white/10">
-                          {currency === 'GBP' ? '🇬🇧 UK' : currency === 'USD' ? '🇺🇸 US' : '🇪🇺 EU'}
-                        </div>
-                      )}
                     </h2>
                     <p className="text-white/60 text-xl max-w-2xl mx-auto mb-8">
                       Choose the plan that matches your growth ambitions

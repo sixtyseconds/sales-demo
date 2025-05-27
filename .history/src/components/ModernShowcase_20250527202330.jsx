@@ -17,8 +17,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [selectedSolution, setSelectedSolution] = useState(null);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [workflowIndex, setWorkflowIndex] = useState(0);
-  const [currentColor, setCurrentColor] = useState(0);
+  const [messageIndex, setMessageIndex] = useState(0);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
   const [showPricing, setShowPricing] = useState(initialShowPricing || false);
   const [selectedCurrency, setSelectedCurrency] = useState(currency || 'GBP');
@@ -110,54 +109,20 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
     return convertedText;
   };
 
-  const workflowDescriptions = [
-    {
-      type: 'AI',
-      purpose: 'attract more customers'
-    },
-    {
-      type: 'research',
-      purpose: 'uncover better leads'
-    },
-    {
-      type: 'data collection',
-      purpose: 'fuel smarter outreach'
-    },
-    {
-      type: 'verification',
-      purpose: 'clean and qualify your lists'
-    },
-    {
-      type: 'messaging',
-      purpose: 'say the right thing, every time'
-    },
-    {
-      type: 'outreach',
-      purpose: 'connect with decision-makers at scale'
-    },
-    {
-      type: 'multi-channel',
-      purpose: 'stay top-of-mind across every touchpoint'
-    },
-    {
-      type: 'video',
-      purpose: 'turn cold leads into warm conversations'
-    },
-    {
-      type: 'landing page',
-      purpose: 'deliver personalised microsites in one click'
-    },
-    {
-      type: 'analytics',
-      purpose: 'measure and optimise every interaction'
-    }
+  const workflowMessages = [
+    'We build AI workflows to help you attract more customers.',
+    'We build research workflows to help you uncover better leads.',
+    'We build data collection workflows to help you fuel smarter outreach.',
+    'We build verification workflows to help you clean and qualify your lists.',
+    'We build messaging workflows to help you say the right thing, every time.',
+    'We build outreach workflows to help you connect with decision-makers at scale.',
+    'We build multi-channel workflows to help you stay top-of-mind across every touchpoint.',
+    'We build video workflows to help you turn cold leads into warm conversations.',
+    'We build landing page workflows to help you deliver personalised microsites in one click.',
+    'We build analytics workflows to help you measure and optimise every interaction.'
   ];
 
-  const colors = [
-    { color: '#8129D7', shadow: 'rgba(129,41,215,0.5)' },  // Purple
-    { color: '#03AD9C', shadow: 'rgba(3,173,156,0.5)' },   // Green
-    { color: '#2A5EDB', shadow: 'rgba(42,94,219,0.5)' }    // Blue
-  ];
+
 
   const challenges = [
     {
@@ -488,11 +453,10 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
     if (!isAnimationStarted) return;
     
     const interval = setInterval(() => {
-      setWorkflowIndex((current) => (current + 1) % workflowDescriptions.length);
-      setCurrentColor((current) => (current + 1) % colors.length);
-    }, 4000); // Slightly longer duration for readability
+      setMessageIndex((current) => (current + 1) % workflowMessages.length);
+    }, 4000); // Slightly longer duration for full sentences
     return () => clearInterval(interval);
-  }, [isAnimationStarted]);
+  }, [isAnimationStarted, workflowMessages.length]);
 
   // Update useEffect to handle URL-based navigation
   useEffect(() => {
@@ -897,40 +861,34 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                       </div>
                     )}
                   </motion.h1>
-                  <motion.p 
+                  <motion.div 
                     variants={itemVariants}
-                    className="text-white/60 text-base md:text-xl lg:text-2xl max-w-5xl mx-auto font-light leading-[1.6] mb-4"
+                    className="text-white/60 text-base md:text-xl lg:text-2xl max-w-5xl mx-auto font-light leading-[1.6] mb-4 min-h-[3.5rem] flex items-center justify-center"
                   >
-                    We build&nbsp;
-                    <motion.span
-                      key={`workflow-type-${workflowIndex}`}
-                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                    <motion.p
+                      key={`workflow-message-${messageIndex}`}
+                      initial={{ opacity: 0, y: 30 }}
                       animate={{ 
                         opacity: [0, 1, 1, 0],
-                        y: [15, 0, 0, -15],
-                        scale: [0.95, 1, 1, 0.95]
+                        y: [30, 0, 0, -30]
                       }}
                       transition={{
                         duration: 4,
                         times: [0, 0.15, 0.85, 1],
-                        ease: [0.25, 0.46, 0.45, 0.94]
+                        ease: [0.64, 0.112, 0.32, 1]
                       }}
-                      className="font-semibold relative inline-block"
+                      className="text-center w-full"
                     >
                       <motion.span
-                        initial={{ color: "#FFFFFF" }}
+                        initial={{ 
+                          background: "linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.6) 100%)"
+                        }}
                         animate={{
-                          color: [
-                            "#FFFFFF",
-                            colors[currentColor].color, 
-                            colors[currentColor].color, 
-                            "#FFFFFF"
-                          ],
-                          textShadow: [
-                            "0 0 0px rgba(255,255,255,0)",
-                            `0 0 20px ${colors[currentColor].shadow}`,
-                            `0 0 20px ${colors[currentColor].shadow}`,
-                            "0 0 0px rgba(255,255,255,0)"
+                          background: [
+                            "linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.6) 100%)",
+                            "linear-gradient(90deg, rgba(129,41,215,0.8) 0%, rgba(42,94,219,0.8) 50%, rgba(3,173,156,0.8) 100%)",
+                            "linear-gradient(90deg, rgba(129,41,215,0.8) 0%, rgba(42,94,219,0.8) 50%, rgba(3,173,156,0.8) 100%)",
+                            "linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.6) 100%)"
                           ]
                         }}
                         transition={{
@@ -938,82 +896,16 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                           times: [0, 0.15, 0.85, 1],
                           ease: "easeInOut"
                         }}
-                        className="relative"
-                      >
-                        {workflowDescriptions[workflowIndex].type}
-                        <motion.div
-                          className="absolute -bottom-1 left-0 h-0.5 bg-current"
-                          initial={{ width: "0%" }}
-                          animate={{
-                            width: ["0%", "100%", "100%", "0%"]
-                          }}
-                          transition={{
-                            duration: 4,
-                            times: [0, 0.15, 0.85, 1],
-                            ease: "easeInOut"
-                          }}
-                        />
-                      </motion.span>
-                    </motion.span>
-                    &nbsp;workflows to help you&nbsp;
-                    <motion.span
-                      key={`workflow-purpose-${workflowIndex}`}
-                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                      animate={{ 
-                        opacity: [0, 1, 1, 0],
-                        y: [15, 0, 0, -15],
-                        scale: [0.95, 1, 1, 0.95]
-                      }}
-                      transition={{
-                        duration: 4,
-                        times: [0, 0.15, 0.85, 1],
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                        delay: 0.1
-                      }}
-                      className="font-semibold relative inline-block"
-                    >
-                      <motion.span
-                        initial={{ color: "#FFFFFF" }}
-                        animate={{
-                          color: [
-                            "#FFFFFF",
-                            colors[(currentColor + 1) % colors.length].color, 
-                            colors[(currentColor + 1) % colors.length].color, 
-                            "#FFFFFF"
-                          ],
-                          textShadow: [
-                            "0 0 0px rgba(255,255,255,0)",
-                            `0 0 20px ${colors[(currentColor + 1) % colors.length].shadow}`,
-                            `0 0 20px ${colors[(currentColor + 1) % colors.length].shadow}`,
-                            "0 0 0px rgba(255,255,255,0)"
-                          ]
+                        style={{
+                          backgroundClip: "text",
+                          WebkitBackgroundClip: "text",
+                          color: "transparent"
                         }}
-                        transition={{
-                          duration: 4,
-                          times: [0, 0.15, 0.85, 1],
-                          ease: "easeInOut",
-                          delay: 0.1
-                        }}
-                        className="relative"
                       >
-                        {convertSpelling(workflowDescriptions[workflowIndex].purpose)}
-                        <motion.div
-                          className="absolute -bottom-1 left-0 h-0.5 bg-current"
-                          initial={{ width: "0%" }}
-                          animate={{
-                            width: ["0%", "100%", "100%", "0%"]
-                          }}
-                          transition={{
-                            duration: 4,
-                            times: [0, 0.15, 0.85, 1],
-                            ease: "easeInOut",
-                            delay: 0.1
-                          }}
-                        />
+                        {convertSpelling(workflowMessages[messageIndex])}
                       </motion.span>
-                    </motion.span>
-                    .
-                  </motion.p>
+                    </motion.p>
+                  </motion.div>
                 </motion.div>
 
                 {/* Challenge Grid */}

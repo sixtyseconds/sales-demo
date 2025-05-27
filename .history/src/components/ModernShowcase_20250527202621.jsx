@@ -473,7 +473,20 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
     }
   };
 
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
+  // Add useEffect for shuffling on mount
+  useEffect(() => {
+    setShuffledAudience(shuffleArray(audienceTypes));
+  }, []);
 
   // Add useEffect for initial delay
   useEffect(() => {
@@ -485,14 +498,14 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
 
   // Modify the existing useEffect for rotation
   useEffect(() => {
-    if (!isAnimationStarted) return;
+    if (!isAnimationStarted || shuffledAudience.length === 0) return;
     
     const interval = setInterval(() => {
-      setWorkflowIndex((current) => (current + 1) % workflowDescriptions.length);
+      setAudienceIndex((current) => (current + 1) % shuffledAudience.length);
       setCurrentColor((current) => (current + 1) % colors.length);
-    }, 4000); // Slightly longer duration for readability
+    }, 3000);
     return () => clearInterval(interval);
-  }, [isAnimationStarted]);
+  }, [isAnimationStarted, shuffledAudience]);
 
   // Update useEffect to handle URL-based navigation
   useEffect(() => {
@@ -899,23 +912,22 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                   </motion.h1>
                   <motion.p 
                     variants={itemVariants}
-                    className="text-white/60 text-base md:text-xl lg:text-2xl max-w-5xl mx-auto font-light leading-[1.6] mb-4"
+                    className="text-white/60 text-base md:text-xl lg:text-2xl max-w-4xl mx-auto font-light leading-[1.6] mb-4"
                   >
-                    We build&nbsp;
+                    We build systems for&nbsp;
                     <motion.span
-                      key={`workflow-type-${workflowIndex}`}
-                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                      key={`word-system-${shuffledAudience[audienceIndex]}-${currentColor}`}
+                      initial={{ opacity: 0, y: 20 }}
                       animate={{ 
                         opacity: [0, 1, 1, 0],
-                        y: [15, 0, 0, -15],
-                        scale: [0.95, 1, 1, 0.95]
+                        y: [20, 0, 0, -20]
                       }}
                       transition={{
-                        duration: 4,
-                        times: [0, 0.15, 0.85, 1],
-                        ease: [0.25, 0.46, 0.45, 0.94]
+                        duration: 3,
+                        times: [0, 0.2, 0.8, 1],
+                        ease: [0.64, 0.112, 0.32, 1]
                       }}
-                      className="font-semibold relative inline-block"
+                      className="font-medium relative inline-block min-w-[120px] text-center"
                     >
                       <motion.span
                         initial={{ color: "#FFFFFF" }}
@@ -927,50 +939,36 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                             "#FFFFFF"
                           ],
                           textShadow: [
-                            "0 0 0px rgba(255,255,255,0)",
-                            `0 0 20px ${colors[currentColor].shadow}`,
-                            `0 0 20px ${colors[currentColor].shadow}`,
-                            "0 0 0px rgba(255,255,255,0)"
+                            "0 0 20px rgba(255,255,255,0)",
+                            `0 0 25px ${colors[currentColor].shadow}`,
+                            `0 0 25px ${colors[currentColor].shadow}`,
+                            "0 0 20px rgba(255,255,255,0)"
                           ]
                         }}
                         transition={{
-                          duration: 4,
-                          times: [0, 0.15, 0.85, 1],
+                          duration: 3,
+                          times: [0, 0.2, 0.8, 1],
                           ease: "easeInOut"
                         }}
-                        className="relative"
                       >
-                        {workflowDescriptions[workflowIndex].type}
-                        <motion.div
-                          className="absolute -bottom-1 left-0 h-0.5 bg-current"
-                          initial={{ width: "0%" }}
-                          animate={{
-                            width: ["0%", "100%", "100%", "0%"]
-                          }}
-                          transition={{
-                            duration: 4,
-                            times: [0, 0.15, 0.85, 1],
-                            ease: "easeInOut"
-                          }}
-                        />
+                        {shuffledAudience[audienceIndex]}
                       </motion.span>
                     </motion.span>
-                    &nbsp;workflows to help you&nbsp;
+                    &nbsp;and can find, research and outreach to&nbsp;
                     <motion.span
-                      key={`workflow-purpose-${workflowIndex}`}
-                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                      key={`word-audience-${shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}-${(currentColor + 1) % colors.length}`}
+                      initial={{ opacity: 0, y: 20 }}
                       animate={{ 
                         opacity: [0, 1, 1, 0],
-                        y: [15, 0, 0, -15],
-                        scale: [0.95, 1, 1, 0.95]
+                        y: [20, 0, 0, -20]
                       }}
                       transition={{
-                        duration: 4,
-                        times: [0, 0.15, 0.85, 1],
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                        delay: 0.1
+                        duration: 3,
+                        times: [0, 0.2, 0.8, 1],
+                        ease: [0.64, 0.112, 0.32, 1],
+                        delay: 0.5
                       }}
-                      className="font-semibold relative inline-block"
+                      className="font-medium relative inline-block min-w-[120px] text-center"
                     >
                       <motion.span
                         initial={{ color: "#FFFFFF" }}
@@ -982,37 +980,23 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                             "#FFFFFF"
                           ],
                           textShadow: [
-                            "0 0 0px rgba(255,255,255,0)",
-                            `0 0 20px ${colors[(currentColor + 1) % colors.length].shadow}`,
-                            `0 0 20px ${colors[(currentColor + 1) % colors.length].shadow}`,
-                            "0 0 0px rgba(255,255,255,0)"
+                            "0 0 20px rgba(255,255,255,0)",
+                            `0 0 25px ${colors[(currentColor + 1) % colors.length].shadow}`,
+                            `0 0 25px ${colors[(currentColor + 1) % colors.length].shadow}`,
+                            "0 0 20px rgba(255,255,255,0)"
                           ]
                         }}
                         transition={{
-                          duration: 4,
-                          times: [0, 0.15, 0.85, 1],
+                          duration: 3,
+                          times: [0, 0.2, 0.8, 1],
                           ease: "easeInOut",
-                          delay: 0.1
+                          delay: 0.5
                         }}
-                        className="relative"
                       >
-                        {convertSpelling(workflowDescriptions[workflowIndex].purpose)}
-                        <motion.div
-                          className="absolute -bottom-1 left-0 h-0.5 bg-current"
-                          initial={{ width: "0%" }}
-                          animate={{
-                            width: ["0%", "100%", "100%", "0%"]
-                          }}
-                          transition={{
-                            duration: 4,
-                            times: [0, 0.15, 0.85, 1],
-                            ease: "easeInOut",
-                            delay: 0.1
-                          }}
-                        />
+                        {shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}
                       </motion.span>
                     </motion.span>
-                    .
+                    &nbsp;with {convertSpelling('personalised')} content.
                   </motion.p>
                 </motion.div>
 
