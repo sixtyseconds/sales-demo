@@ -2,25 +2,6 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import ModernShowcase from './components/ModernShowcase'
 
-/**
- * Currency-specific routes for sharing direct links to prospects:
- * 
- * Main pages:
- * - /UK - UK version with GBP currency and British spelling
- * - /US - US version with USD currency and American spelling  
- * - /EU - EU version with EUR currency and British spelling
- * 
- * Pricing pages:
- * - /UK/pricing - UK pricing page
- * - /US/pricing - US pricing page  
- * - /EU/pricing - EU pricing page
- * 
- * Solution pages:
- * - /UK/solutions/:challengeId - UK solution pages
- * - /US/solutions/:challengeId - US solution pages
- * - /EU/solutions/:challengeId - EU solution pages
- */
-
 function App() {
   return (
     <Routes>
