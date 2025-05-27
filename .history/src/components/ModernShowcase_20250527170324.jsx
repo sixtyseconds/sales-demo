@@ -26,91 +26,6 @@ const ModernShowcase = () => {
   const [billingPeriod, setBillingPeriod] = useState('monthly');
   const [navigationHistory, setNavigationHistory] = useState(['challenges']);
 
-  // Utility function to convert UK spelling to US spelling when USD is selected
-  const convertSpelling = (text) => {
-    if (selectedCurrency !== 'USD') return text;
-    
-    const spellingMap = {
-      'personalisation': 'personalization',
-      'Personalisation': 'Personalization',
-      'personalised': 'personalized',
-      'Personalised': 'Personalized',
-      'optimisation': 'optimization',
-      'Optimisation': 'Optimization',
-      'customisation': 'customization',
-      'Customisation': 'Customization',
-      'utilise': 'utilize',
-      'Utilise': 'Utilize',
-      'behavioural': 'behavioral',
-      'Behavioural': 'Behavioral',
-      'organisation': 'organization',
-      'Organisation': 'Organization',
-      'realise': 'realize',
-      'Realise': 'Realize',
-      'colour': 'color',
-      'Colour': 'Color',
-      'behaviour': 'behavior',
-      'Behaviour': 'Behavior',
-      'centre': 'center',
-      'Centre': 'Center',
-      'favour': 'favor',
-      'Favour': 'Favor',
-      'honour': 'honor',
-      'Honour': 'Honor',
-      'labour': 'labor',
-      'Labour': 'Labor',
-      'neighbour': 'neighbor',
-      'Neighbour': 'Neighbor',
-      'analyse': 'analyze',
-      'Analyse': 'Analyze',
-      'defence': 'defense',
-      'Defence': 'Defense',
-      'licence': 'license',
-      'Licence': 'License',
-      'offence': 'offense',
-      'Offence': 'Offense',
-      'grey': 'gray',
-      'Grey': 'Gray',
-      'programme': 'program',
-      'Programme': 'Program',
-      'specialise': 'specialize',
-      'Specialise': 'Specialize',
-      'recognise': 'recognize',
-      'Recognise': 'Recognize',
-      'organise': 'organize',
-      'Organise': 'Organize',
-      'emphasise': 'emphasize',
-      'Emphasise': 'Emphasize',
-      'summarise': 'summarize',
-      'Summarise': 'Summarize',
-      'categorise': 'categorize',
-      'Categorise': 'Categorize',
-      'prioritise': 'prioritize',
-      'Prioritise': 'Prioritize',
-      'minimise': 'minimize',
-      'Minimise': 'Minimize',
-      'maximise': 'maximize',
-      'Maximise': 'Maximize',
-      'standardise': 'standardize',
-      'Standardise': 'Standardize',
-      'modernise': 'modernize',
-      'Modernise': 'Modernize',
-      'characterise': 'characterize',
-      'Characterise': 'Characterize',
-      'criticise': 'criticize',
-      'Criticise': 'Criticize',
-      'apologise': 'apologize',
-      'Apologise': 'Apologize'
-    };
-
-    let convertedText = text;
-    Object.entries(spellingMap).forEach(([uk, us]) => {
-      convertedText = convertedText.replace(new RegExp(uk, 'g'), us);
-    });
-    
-    return convertedText;
-  };
-
   const audienceTypes = [
     'recruiting',
     'sourcing',
@@ -144,8 +59,8 @@ const ModernShowcase = () => {
       subtext: 'AI-Powered lead generation & nurturing',
       features: [
         {
-          title: convertSpelling('Personalised AI Emails with Video'),
-          description: convertSpelling('Grab and hold attention with custom video messages, researched and tailored to each prospect. Linking to dynamic, personalised landing pages.')
+          title: 'Personalised AI Emails with Video',
+          description: 'Grab and hold attention with custom video messages, researched and tailored to each prospect. Linking to dynamic, personalised landing pages.'
         },
         {
           title: 'Advanced Data Sourcing',
@@ -153,34 +68,34 @@ const ModernShowcase = () => {
         },
         {
           title: 'Dedicated Success Team',
-          description: convertSpelling('Our internal optimisation experts continuously refine and improve your campaigns using data-driven insights and industry leading practices.')
+          description: 'Our internal optimisation experts continuously refine and improve your campaigns using data-driven insights and industry leading practices.'
         },
         {
           title: 'Full-Funnel & Multi-Channel',
-          description: convertSpelling('Seamless top and middle funnel strategies that utilise email outreach, paid advertising and smart retargeting for consistent engagement.')
+          description: 'Seamless top and middle funnel strategies that utilise email outreach, paid advertising and smart retargeting for consistent engagement.'
         }
       ],
       additionalInfo: {
         integration: 'All of this feeds automatically into your CRM, live notifications and our live Analytics Dashboard.',
-        compatibility: convertSpelling('Works hand-in-hand with our Personalised Landing Pages and Bespoke Content Creation.')
+        compatibility: 'Works hand-in-hand with our Personalised Landing Pages and Bespoke Content Creation.'
       },
       solutions: ['outreach-solution']
     },
     {
       id: 'landing',
-      title: convertSpelling('Personalised Landing Pages'),
+      title: 'Personalised Landing Pages',
       icon: <Globe className="w-8 h-8" />,
       color: 'bg-gradient-to-br from-[#2A5EDB]/40 to-[#4C7AE6]/40 hover:from-[#2A5EDB] hover:to-[#4C7AE6]',
       description: 'Dynamic pages that adapt to every visitor',
       subtext: 'Real-time personalization engine',
       features: [
         {
-          title: convertSpelling('Intelligent Personalisation'),
-          description: convertSpelling('Pages dynamically adapt to each visitor using real-time data, company information and behavioural insights to create a truly personalised experience for every visitor.')
+          title: 'Intelligent Personalisation',
+          description: 'Pages dynamically adapt to each visitor using real-time data, company information and behavioural insights to create a truly personalised experience for every visitor.'
         },
         {
           title: 'Custom Video Integration',
-          description: convertSpelling('Embed quality, personalised videos that speak directly to your prospect, featuring their name and tailored messaging and voiceovers.')
+          description: 'Embed quality, personalised videos that speak directly to your prospect, featuring their name and tailored messaging and voiceovers.'
         },
         {
           title: 'Dynamic AI Voiceovers',
@@ -286,7 +201,7 @@ const ModernShowcase = () => {
       demo: 'Try It Now'
     },
     'ai-personalisation': {
-      title: convertSpelling('Personalised Outreach at Scale'),
+      title: 'Personalised Outreach at Scale',
       subtitle: 'Smart Messaging',
       description: "Reach more prospects while keeping it personal.",
       features: [
@@ -327,7 +242,7 @@ const ModernShowcase = () => {
         {
           icon: <Users className="w-5 h-5" />,
           title: 'Custom Intros',
-          description: convertSpelling('Personalised video messages for prospects')
+          description: 'Personalised video messages for prospects'
         },
         {
           icon: <FileVideo className="w-5 h-5" />,
@@ -351,7 +266,7 @@ const ModernShowcase = () => {
         {
           icon: <Video className="w-5 h-5" />,
           title: 'Custom Videos',
-          description: convertSpelling('Create personalised video messages')
+          description: 'Create personalised video messages'
         },
         {
           icon: <Globe className="w-5 h-5" />,
@@ -503,13 +418,13 @@ const ModernShowcase = () => {
 
   const pricingPlans = [
     {
-      name: 'Self Managed',
-      price: '399',
-      description: convertSpelling('Access to our Personalisation Technology. Perfect for teams with established email infrastructure.'),
+      name: 'Starter',
+      price: '249',
+      description: 'Perfect for small teams testing video outreach',
       features: [
         {
-          name: '2000 Self-Serve AI Video Emails/month',
-          tooltip: convertSpelling('Create personalised video messages with AI-powered customisation for each prospect.'),
+          name: '500 Self-Serve AI Video Emails/month',
+          tooltip: 'Create personalised video messages with AI-powered customisation for each prospect.',
           included: true
         },
         {
@@ -518,8 +433,8 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Basic Personalisation'),
-          tooltip: convertSpelling('Personalise the landing page content with each prospects name.'),
+          name: 'Basic Personalisation',
+          tooltip: 'Personalise the landing page content with each prospects name.',
           included: true
         },
         {
@@ -538,13 +453,13 @@ const ModernShowcase = () => {
           included: false
         },
         {
-          name: convertSpelling('Optimisation Team'),
-          tooltip: convertSpelling('Dedicated team for campaign optimisation and strategy.'),
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy.',
           included: false
         },
         {
-          name: convertSpelling('Campaign Optimisation'),
-          tooltip: convertSpelling('Regular campaign optimisation and performance reviews.'),
+          name: 'Campaign Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews.',
           included: false
         },
         {
@@ -554,7 +469,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
           included: false
         },
         {
@@ -588,7 +503,7 @@ const ModernShowcase = () => {
       features: [
         {
           name: '4,000 AI Video Emails/month',
-          tooltip: convertSpelling('We generate and send personalised AI-crafted emails with embedded video content.'),
+          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content.',
           included: true
         },
         {
@@ -597,8 +512,8 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Advanced Personalisation'),
-          tooltip: convertSpelling('Personalise the landing page content with each prospects name.'),
+          name: 'Advanced Personalisation',
+          tooltip: 'Personalise the landing page content with each prospects name.',
           included: true
         },
         {
@@ -617,13 +532,13 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Optimisation Team'),
-          tooltip: convertSpelling('Dedicated team for campaign optimisation and strategy.'),
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy.',
           included: true
         },
         {
-          name: convertSpelling('Monthly Optimisation'),
-          tooltip: convertSpelling('Regular campaign optimisation and performance reviews.'),
+          name: 'Monthly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews.',
           included: true
         },
         {
@@ -633,7 +548,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
           included: true
         },
         {
@@ -668,7 +583,7 @@ const ModernShowcase = () => {
       features: [
         {
           name: '10,000 AI Video Emails/month',
-          tooltip: convertSpelling('We generate and send personalised AI-crafted emails with embedded video content.'),
+          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content.',
           included: true
         },
         {
@@ -677,8 +592,8 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Hyper Personalisation'),
-          tooltip: convertSpelling('Personalise the landing page content with each prospects name as well as intro sentence.'),
+          name: 'Hyper Personalisation',
+          tooltip: 'Personalise the landing page content with each prospects name as well as intro sentence.',
           included: true
         },
         {
@@ -697,13 +612,13 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Optimisation Team'),
-          tooltip: convertSpelling('Dedicated team for campaign optimisation and strategy.'),
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy.',
           included: true
         },
         {
-          name: convertSpelling('Weekly Optimisation'),
-          tooltip: convertSpelling('Regular campaign optimisation and performance reviews.'),
+          name: 'Weekly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews.',
           included: true
         },
         {
@@ -713,7 +628,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
           included: true
         },
         {
@@ -930,7 +845,7 @@ const ModernShowcase = () => {
                         {shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}
                       </motion.span>
                     </motion.span>
-                    &nbsp;with {convertSpelling('personalised')} content.
+                    &nbsp;with personalised content.
                   </motion.p>
                 </motion.div>
 
