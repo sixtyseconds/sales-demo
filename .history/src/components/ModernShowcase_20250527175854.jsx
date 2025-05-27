@@ -286,7 +286,7 @@ const ModernShowcase = () => {
       demo: 'Try It Now'
     },
     'ai-personalisation': {
-      title: convertSpelling('Personalised Outreach at Scale'),
+      title: 'Personalised Outreach at Scale',
       subtitle: 'Smart Messaging',
       description: "Reach more prospects while keeping it personal.",
       features: [
@@ -327,7 +327,7 @@ const ModernShowcase = () => {
         {
           icon: <Users className="w-5 h-5" />,
           title: 'Custom Intros',
-          description: convertSpelling('Personalised video messages for prospects')
+          description: 'Personalised video messages for prospects'
         },
         {
           icon: <FileVideo className="w-5 h-5" />,
@@ -351,7 +351,7 @@ const ModernShowcase = () => {
         {
           icon: <Video className="w-5 h-5" />,
           title: 'Custom Videos',
-          description: convertSpelling('Create personalised video messages')
+          description: 'Create personalised video messages'
         },
         {
           icon: <Globe className="w-5 h-5" />,
@@ -505,11 +505,11 @@ const ModernShowcase = () => {
     {
       name: 'Self Managed',
       price: '399',
-      description: convertSpelling('Access to our Personalisation Technology. Perfect for teams with established email infrastructure.'),
+      description: 'Access to our Personalisation Technology. Perfect for teams with established email infrastructure.',
       features: [
         {
           name: '2000 Self-Serve AI Video Emails/month',
-          tooltip: convertSpelling('Create personalised video messages with AI-powered customisation for each prospect.'),
+          tooltip: 'Create personalised video messages with AI-powered customisation for each prospect.',
           included: true
         },
         {
@@ -518,8 +518,8 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Basic Personalisation'),
-          tooltip: convertSpelling('Personalise the landing page content with each prospects name.'),
+          name: 'Basic Personalisation',
+          tooltip: 'Personalise the landing page content with each prospects name.',
           included: true
         },
         {
@@ -538,13 +538,13 @@ const ModernShowcase = () => {
           included: false
         },
         {
-          name: convertSpelling('Optimisation Team'),
-          tooltip: convertSpelling('Dedicated team for campaign optimisation and strategy.'),
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy.',
           included: false
         },
         {
-          name: convertSpelling('Campaign Optimisation'),
-          tooltip: convertSpelling('Regular campaign optimisation and performance reviews.'),
+          name: 'Campaign Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews.',
           included: false
         },
         {
@@ -554,7 +554,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
           included: false
         },
         {
@@ -588,7 +588,7 @@ const ModernShowcase = () => {
       features: [
         {
           name: '4,000 AI Video Emails/month',
-          tooltip: convertSpelling('We generate and send personalised AI-crafted emails with embedded video content.'),
+          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content.',
           included: true
         },
         {
@@ -597,8 +597,8 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Advanced Personalisation'),
-          tooltip: convertSpelling('Personalise the landing page content with each prospects name.'),
+          name: 'Advanced Personalisation',
+          tooltip: 'Personalise the landing page content with each prospects name.',
           included: true
         },
         {
@@ -617,13 +617,13 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Optimisation Team'),
-          tooltip: convertSpelling('Dedicated team for campaign optimisation and strategy.'),
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy.',
           included: true
         },
         {
-          name: convertSpelling('Monthly Optimisation'),
-          tooltip: convertSpelling('Regular campaign optimisation and performance reviews.'),
+          name: 'Monthly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews.',
           included: true
         },
         {
@@ -633,7 +633,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
           included: true
         },
         {
@@ -668,7 +668,7 @@ const ModernShowcase = () => {
       features: [
         {
           name: '10,000 AI Video Emails/month',
-          tooltip: convertSpelling('We generate and send personalised AI-crafted emails with embedded video content.'),
+          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content.',
           included: true
         },
         {
@@ -677,8 +677,8 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Hyper Personalisation'),
-          tooltip: convertSpelling('Personalise the landing page content with each prospects name as well as intro sentence.'),
+          name: 'Hyper Personalisation',
+          tooltip: 'Personalise the landing page content with each prospects name as well as intro sentence.',
           included: true
         },
         {
@@ -697,13 +697,13 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: convertSpelling('Optimisation Team'),
-          tooltip: convertSpelling('Dedicated team for campaign optimisation and strategy.'),
+          name: 'Optimisation Team',
+          tooltip: 'Dedicated team for campaign optimisation and strategy.',
           included: true
         },
         {
-          name: convertSpelling('Weekly Optimisation'),
-          tooltip: convertSpelling('Regular campaign optimisation and performance reviews.'),
+          name: 'Weekly Optimisation',
+          tooltip: 'Regular campaign optimisation and performance reviews.',
           included: true
         },
         {
@@ -713,7 +713,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
           included: true
         },
         {
@@ -930,7 +930,7 @@ const ModernShowcase = () => {
                         {shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}
                       </motion.span>
                     </motion.span>
-                    &nbsp;with {convertSpelling('personalised')} content.
+                    &nbsp;with personalised content.
                   </motion.p>
                 </motion.div>
 

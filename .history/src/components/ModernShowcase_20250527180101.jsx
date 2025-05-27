@@ -930,7 +930,7 @@ const ModernShowcase = () => {
                         {shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}
                       </motion.span>
                     </motion.span>
-                    &nbsp;with {convertSpelling('personalised')} content.
+                    &nbsp;with personalised content.
                   </motion.p>
                 </motion.div>
 

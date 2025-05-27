@@ -713,7 +713,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
+          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
           included: true
         },
         {
@@ -930,7 +930,7 @@ const ModernShowcase = () => {
                         {shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}
                       </motion.span>
                     </motion.span>
-                    &nbsp;with {convertSpelling('personalised')} content.
+                    &nbsp;with personalised content.
                   </motion.p>
                 </motion.div>
 
