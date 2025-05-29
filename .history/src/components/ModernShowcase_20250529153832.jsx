@@ -547,7 +547,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
       features: [
         {
           name: '2000 Self-Serve AI Video Emails/month',
-          tooltip: 'Create personalised video messages with AI-powered customisation for each prospect.',
+          tooltip: convertSpelling('Create personalised video messages with AI-powered customisation for each prospect.'),
           included: true
         },
         {
@@ -556,13 +556,13 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
           included: true
         },
         {
-          name: 'Basic Personalisation',
-          tooltip: 'Personalise the video thumbnail with each prospects name.',
+          name: convertSpelling('Basic Personalisation'),
+          tooltip: convertSpelling('Personalise the video thumbnail with each prospects name.'),
           included: true
         },
         {
           name: 'Pro AI VoiceOver Addon',
-          tooltip: 'Personalise your videos with a cloned AI voiceover or AI artist.',
+          tooltip: convertSpelling('Personalise your videos with a cloned AI voiceover or AI artist.'),
           included: true
         },
         {
@@ -576,13 +576,13 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
           included: false
         },
         {
-          name: 'Optimisation Team',
-          tooltip: 'Dedicated team for campaign optimisation and strategy.',
+          name: convertSpelling('Optimisation Team'),
+          tooltip: convertSpelling('Dedicated team for campaign optimisation and strategy.'),
           included: false
         },
         {
-          name: 'Campaign Optimisation',
-          tooltip: 'Regular campaign optimisation and performance reviews.',
+          name: convertSpelling('Campaign Optimisation'),
+          tooltip: convertSpelling('Regular campaign optimisation and performance reviews.'),
           included: false
         },
         {
@@ -592,7 +592,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
+          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
           included: false
         },
         {
@@ -602,13 +602,13 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
         },
         {
           name: 'CRM Integration',
-          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho - supported only.',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho.',
           included: true
         },
         {
-          name: 'Live Stats',
-          tooltip: 'Comprehensive daily performance metrics and insights.',
-          included: true
+          name: 'Stats Updates',
+          tooltip: 'Comprehensive performance metrics and insights.',
+          included: false
         },
         {
           name: 'Managed Replies',
@@ -681,11 +681,11 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
         },
         {
           name: 'CRM Integration',
-          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho - supported only.',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho.',
           included: true
         },
         {
-          name: 'Live Stats',
+          name: 'Daily Stats',
           tooltip: 'Comprehensive daily performance metrics and insights.',
           included: true
         },
@@ -761,7 +761,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
         },
         {
           name: 'CRM Integration',
-          tooltip: 'All standard + Salesforce & Custom API - supported only.',
+          tooltip: 'All + Salesforce & Custom API.',
           included: true
         },
         {
@@ -1347,7 +1347,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                         className={`relative rounded-2xl bg-gradient-to-br ${plan.gradient}
                           backdrop-blur-xl border border-white/10 overflow-hidden
                           transform-gpu transition-all duration-300
-                          hover:border-white/20 hover:shadow-2xl flex flex-col h-full`}
+                          hover:border-white/20 hover:shadow-2xl flex flex-col`}
                       >
                         {plan.popular && (
                           <div className="absolute top-0 right-0 mt-4 mr-4">
@@ -1356,8 +1356,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                             </span>
                           </div>
                         )}
-                        {/* Header Section - Fixed Height */}
-                        <div className="p-8 flex-shrink-0">
+                        <div className="p-8 flex-1">
                           <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
                           <div className="flex items-baseline mb-2">
                             <span className="text-4xl font-bold text-white">
@@ -1368,7 +1367,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                             )}
                           </div>
                           {billingPeriod === 'monthly' && plan.price !== 'Custom' && (
-                            <div className="flex items-center gap-2 mb-4 h-6">
+                            <div className="flex items-center gap-2 mb-4">
                               <motion.div 
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -1379,12 +1378,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                               </motion.div>
                             </div>
                           )}
-                          {billingPeriod === 'annual' && (
-                            <div className="h-6 mb-4"></div>
-                          )}
-                          <div className="h-12 mb-6">
-                            <p className="text-white/80 text-sm leading-tight">{plan.description}</p>
-                          </div>
+                          <p className="text-white/80 mb-6 min-h-[48px]">{plan.description}</p>
                           {selectedCurrency === 'GBP' && plan.price !== 'Custom' && (
                             <p className="text-white/60 text-sm mb-4">*Price excludes VAT</p>
                           )}
@@ -1402,112 +1396,102 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                             Get Started
                           </motion.button>
                         </div>
-                        
-                        {/* Features Section - Fixed Height to ensure alignment */}
-                        <div className="border-t border-white/10 flex-1 flex flex-col">
-                          <div className="p-6" style={{ minHeight: '420px' }}>
-                            <p className="text-sm font-medium text-white/80 mb-4">What's included:</p>
-                            <ul className="space-y-3 mb-6">
-                              {plan.features.map((feature, i) => (
-                                <li key={i} className="group relative flex items-start gap-3">
-                                  {feature.included ? (
-                                    <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                  ) : (
-                                    <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
-                                      <div className="w-1 h-1 rounded-full bg-white/20" />
-                                    </div>
-                                  )}
-                                  <span className={`text-sm ${feature.included ? 'text-white/90' : 'text-white/40'} leading-relaxed`}>
-                                    {feature.name}
+                        <div className="border-t border-white/10 p-6">
+                          <p className="text-sm font-medium text-white/80 mb-4">What's included:</p>
+                          <ul className="space-y-3">
+                            {plan.features.map((feature, i) => (
+                              <li key={i} className="group relative flex items-start gap-3">
+                                {feature.included ? (
+                                  <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                ) : (
+                                  <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                    <div className="w-1 h-1 rounded-full bg-white/20" />
+                                  </div>
+                                )}
+                                <span className={`text-sm ${feature.included ? 'text-white/90' : 'text-white/40'} leading-relaxed`}>
+                                  {feature.name}
+                                </span>
+                                {feature.tooltip && (
+                                  <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                    {feature.tooltip}
+                                  </div>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                          <p className="text-sm font-medium text-white/80 mb-4 mt-6">Bolt Ons:</p>
+                          <ul className="space-y-3">
+                            {plan.name === 'Self Managed' && (
+                              <>
+                                <li className="group relative flex items-start gap-3">
+                                  <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                    <div className="w-1 h-1 rounded-full bg-amber-400" />
+                                  </div>
+                                  <span className="text-sm text-amber-400 leading-relaxed">
+                                    Pro AI VoiceOver Upgrade
                                   </span>
-                                  {feature.tooltip && (
-                                    <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 
-                                      group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10 backdrop-blur-sm"
-                                    >
-                                      {feature.tooltip}
-                                    </div>
-                                  )}
+                                  <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                    Upgrade from basic AI voiceover to professional AI voice cloning and premium AI voices.
+                                  </div>
                                 </li>
-                              ))}
-                            </ul>
-                          </div>
-                          
-                          {/* Bolt Ons Section - Perfectly Aligned titles */}
-                          <div className="border-t border-white/10 p-6 flex-shrink-0">
-                            <p className="text-sm font-medium text-white/80 mb-4">Bolt Ons:</p>
-                            <ul className="space-y-3">
-                              {/* Plan-specific bolt-ons for Self Managed */}
-                              {plan.name === 'Self Managed' && (
-                                <>
-                                  <li className="group relative flex items-start gap-3">
-                                    <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                    <span className="text-sm text-white/90 leading-relaxed">
-                                      Pro AI VoiceOver Upgrade
-                                    </span>
-                                    <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                      Upgrade from basic AI voiceover to professional AI voice cloning and premium AI voices.
-                                    </div>
-                                  </li>
-                                  <li className="group relative flex items-start gap-3">
-                                    <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                    <span className="text-sm text-white/90 leading-relaxed">
-                                      Professional Ad Videos
-                                    </span>
-                                    <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                      Add bespoke professionally edited videos perfect for capturing attention and driving engagement.
-                                    </div>
-                                  </li>
-                                </>
-                              )}
-                              
-                              {/* Universal bolt-ons for all plans */}
-                              <li className="group relative flex items-start gap-3">
-                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                <span className="text-sm text-white/90 leading-relaxed">
-                                  Custom CRM Integration
-                                </span>
-                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                  Custom integrations with any CRM system beyond our standard supported platforms.
-                                </div>
-                              </li>
-                              <li className="group relative flex items-start gap-3">
-                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                <span className="text-sm text-white/90 leading-relaxed">
-                                  Custom Landing Page Design & Build
-                                </span>
-                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                  Full design, build, and hosting of a completely custom landing page tailored to your brand and campaign needs.
-                                </div>
-                              </li>
-                              <li className="group relative flex items-start gap-3">
-                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                <span className="text-sm text-white/90 leading-relaxed">
-                                  Automated AI Workflows
-                                </span>
-                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                  Custom built workflows to automate almost anything.
-                                </div>
-                              </li>
-                              <li className="group relative flex items-start gap-3">
-                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                <span className="text-sm text-white/90 leading-relaxed">
-                                  Automated Video Workflows
-                                </span>
-                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                  Custom built workflows to automate video production.
-                                </div>
-                              </li>
-                              <li className="group relative flex items-start gap-3">
-                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                <span className="text-sm text-white/90 leading-relaxed">
-                                  One-Off Bespoke 60s Video
-                                </span>
-                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                  Bespoke, high quality product/brand explainer video.
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
+                                <li className="group relative flex items-start gap-3">
+                                  <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                    <div className="w-1 h-1 rounded-full bg-amber-400" />
+                                  </div>
+                                  <span className="text-sm text-amber-400 leading-relaxed">
+                                    Professional Ad Videos
+                                  </span>
+                                  <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                    Add bespoke professionally edited videos perfect for capturing attention and driving engagement.
+                                  </div>
+                                </li>
+                              </>
+                            )}
+                            <li className="group relative flex items-start gap-3">
+                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                <div className="w-1 h-1 rounded-full bg-white/20" />
+                              </div>
+                              <span className="text-sm text-white/40 leading-relaxed">
+                                Custom Landing Page Design & Build
+                              </span>
+                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                Full design, build, and hosting of a completely custom landing page tailored to your brand and campaign needs.
+                              </div>
+                            </li>
+                            <li className="group relative flex items-start gap-3">
+                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                <div className="w-1 h-1 rounded-full bg-white/20" />
+                              </div>
+                              <span className="text-sm text-white/40 leading-relaxed">
+                                Automated AI Workflows
+                              </span>
+                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                Custom built workflows to automate almost anything.
+                              </div>
+                            </li>
+                            <li className="group relative flex items-start gap-3">
+                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                <div className="w-1 h-1 rounded-full bg-white/20" />
+                              </div>
+                              <span className="text-sm text-white/40 leading-relaxed">
+                                Automated Video Workflows
+                              </span>
+                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                Custom built workflows to automate video production.
+                              </div>
+                            </li>
+                            <li className="group relative flex items-start gap-3">
+                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                <div className="w-1 h-1 rounded-full bg-white/20" />
+                              </div>
+                              <span className="text-sm text-white/40 leading-relaxed">
+                                One-Off Bespoke 60s Video
+                              </span>
+                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                Bespoke, high quality product/brand explainer video.
+                              </div>
+                            </li>
+                          </ul>
                         </div>
                       </motion.div>
                     ))}

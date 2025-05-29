@@ -1403,9 +1403,9 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                           </motion.button>
                         </div>
                         
-                        {/* Features Section - Fixed Height to ensure alignment */}
+                        {/* Features Section - Flexible Height */}
                         <div className="border-t border-white/10 flex-1 flex flex-col">
-                          <div className="p-6" style={{ minHeight: '420px' }}>
+                          <div className="p-6 flex-1">
                             <p className="text-sm font-medium text-white/80 mb-4">What's included:</p>
                             <ul className="space-y-3 mb-6">
                               {plan.features.map((feature, i) => (
@@ -1432,8 +1432,8 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                             </ul>
                           </div>
                           
-                          {/* Bolt Ons Section - Perfectly Aligned titles */}
-                          <div className="border-t border-white/10 p-6 flex-shrink-0">
+                          {/* Bolt Ons Section - Aligned across all plans */}
+                          <div className="border-t border-white/10 p-6">
                             <p className="text-sm font-medium text-white/80 mb-4">Bolt Ons:</p>
                             <ul className="space-y-3">
                               {/* Plan-specific bolt-ons for Self Managed */}
@@ -1456,6 +1456,28 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                                     <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
                                       Add bespoke professionally edited videos perfect for capturing attention and driving engagement.
                                     </div>
+                                  </li>
+                                </>
+                              )}
+                              
+                              {/* Placeholder spacers for Growth and Scale to maintain alignment */}
+                              {plan.name !== 'Self Managed' && (
+                                <>
+                                  <li className="group relative flex items-start gap-3 opacity-30">
+                                    <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                      <div className="w-1 h-1 rounded-full bg-white/20" />
+                                    </div>
+                                    <span className="text-sm text-white/40 leading-relaxed">
+                                      {plan.name === 'Growth' ? 'Advanced Features Included' : 'Premium Features Included'}
+                                    </span>
+                                  </li>
+                                  <li className="group relative flex items-start gap-3 opacity-30">
+                                    <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                      <div className="w-1 h-1 rounded-full bg-white/20" />
+                                    </div>
+                                    <span className="text-sm text-white/40 leading-relaxed">
+                                      {plan.name === 'Growth' ? 'Everything You Need' : 'Enterprise-Grade Solutions'}
+                                    </span>
                                   </li>
                                 </>
                               )}
