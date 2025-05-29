@@ -1440,7 +1440,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                               {plan.name === 'Self Managed' && (
                                 <>
                                   <li className="group relative flex items-start gap-3">
-                                    <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                                     <span className="text-sm text-white/90 leading-relaxed">
                                       Pro AI VoiceOver Upgrade
                                     </span>
@@ -1449,7 +1449,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                                     </div>
                                   </li>
                                   <li className="group relative flex items-start gap-3">
-                                    <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                                     <span className="text-sm text-white/90 leading-relaxed">
                                       Professional Ad Videos
                                     </span>
@@ -1462,7 +1462,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                               
                               {/* Universal bolt-ons for all plans */}
                               <li className="group relative flex items-start gap-3">
-                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                                 <span className="text-sm text-white/90 leading-relaxed">
                                   Custom CRM Integration
                                 </span>
@@ -1471,7 +1471,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                                 </div>
                               </li>
                               <li className="group relative flex items-start gap-3">
-                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                                 <span className="text-sm text-white/90 leading-relaxed">
                                   Custom Landing Page Design & Build
                                 </span>
@@ -1480,7 +1480,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                                 </div>
                               </li>
                               <li className="group relative flex items-start gap-3">
-                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                                 <span className="text-sm text-white/90 leading-relaxed">
                                   Automated AI Workflows
                                 </span>
@@ -1489,7 +1489,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                                 </div>
                               </li>
                               <li className="group relative flex items-start gap-3">
-                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                                 <span className="text-sm text-white/90 leading-relaxed">
                                   Automated Video Workflows
                                 </span>
@@ -1498,7 +1498,7 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                                 </div>
                               </li>
                               <li className="group relative flex items-start gap-3">
-                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                                 <span className="text-sm text-white/90 leading-relaxed">
                                   One-Off Bespoke 60s Video
                                 </span>
@@ -1540,7 +1540,8 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
                                     </div>
                                     <span className="text-white/90">{feature.name}</span>
                                     {feature.tooltip && (
-                                      <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 
+                                      <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900/90 
+                                        rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 
                                         group-hover:visible transition-all duration-200 pointer-events-none z-50 
                                         shadow-xl border border-white/10 backdrop-blur-sm"
                                       >
