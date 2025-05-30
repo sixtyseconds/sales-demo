@@ -418,12 +418,12 @@ const ModernShowcase = () => {
 
   const pricingPlans = [
     {
-      name: 'Starter',
-      price: '249',
-      description: 'Perfect for small teams testing video outreach',
+      name: 'Self Managed',
+      price: '399',
+      description: 'Access to our Personalisation Technology. Perfect for teams with established email infrastructure.',
       features: [
         {
-          name: '500 Self-Serve AI Video Emails/month',
+          name: '2000 Self-Serve AI Video Emails/month',
           tooltip: 'Create personalised video messages with AI-powered customisation for each prospect.',
           included: true
         },

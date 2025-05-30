@@ -6,10 +6,10 @@ import {
   Target, Megaphone, PlayCircle, FileVideo,
   ArrowRight, ChevronRight, Sparkles, Globe,
   Mail, LinkedinIcon, MessageSquare, ArrowLeft,
-  Clock, Search, Zap, MousePointer, Check
+  Clock, Search, Zap, MousePointer, Check, Plus
 } from 'lucide-react';
 
-const ModernShowcase = () => {
+const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
   const navigate = useNavigate();
   const { challengeId } = useParams();
   const location = useLocation();
@@ -17,12 +17,11 @@ const ModernShowcase = () => {
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [selectedSolution, setSelectedSolution] = useState(null);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [audienceIndex, setAudienceIndex] = useState(0);
+  const [workflowIndex, setWorkflowIndex] = useState(0);
   const [currentColor, setCurrentColor] = useState(0);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
-  const [shuffledAudience, setShuffledAudience] = useState([]);
-  const [showPricing, setShowPricing] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState('GBP');
+  const [showPricing, setShowPricing] = useState(initialShowPricing || false);
+  const [selectedCurrency, setSelectedCurrency] = useState(currency || 'GBP');
   const [billingPeriod, setBillingPeriod] = useState('monthly');
   const [navigationHistory, setNavigationHistory] = useState(['challenges']);
 
@@ -111,21 +110,47 @@ const ModernShowcase = () => {
     return convertedText;
   };
 
-  const audienceTypes = [
-    'recruiting',
-    'sourcing',
-    'video',
-    'enrichment',
-    'sales',
-    'content',
-    'prospecting',
-    'data entry',
-    'marketing',
-    'new audiences',
-    'leads',
-    'referrals',
-    'prospects',
-    'candidates'
+  const workflowDescriptions = [
+    {
+      type: 'AI',
+      purpose: 'attract more customers'
+    },
+    {
+      type: 'research',
+      purpose: 'uncover better leads'
+    },
+    {
+      type: 'data collection',
+      purpose: 'fuel smarter outreach'
+    },
+    {
+      type: 'verification',
+      purpose: 'clean and qualify your lists'
+    },
+    {
+      type: 'messaging',
+      purpose: 'say the right thing, every time'
+    },
+    {
+      type: 'outreach',
+      purpose: 'connect with decision-makers at scale'
+    },
+    {
+      type: 'multi-channel',
+      purpose: 'stay top-of-mind across every touchpoint'
+    },
+    {
+      type: 'video',
+      purpose: 'turn cold leads into warm conversations'
+    },
+    {
+      type: 'landing page',
+      purpose: 'deliver personalised microsites in one click'
+    },
+    {
+      type: 'analytics',
+      purpose: 'measure and optimise every interaction'
+    }
   ];
 
   const colors = [
@@ -144,8 +169,8 @@ const ModernShowcase = () => {
       subtext: 'AI-Powered lead generation & nurturing',
       features: [
         {
-          title: 'Personalised AI Emails with Video',
-          description: 'Grab and hold attention with custom video messages, researched and tailored to each prospect. Linking to dynamic, personalised landing pages.'
+          title: convertSpelling('Personalised AI Emails with Video'),
+          description: convertSpelling('Grab and hold attention with custom video messages, researched and tailored to each prospect. Linking to dynamic, personalised landing pages.')
         },
         {
           title: 'Advanced Data Sourcing',
@@ -153,34 +178,34 @@ const ModernShowcase = () => {
         },
         {
           title: 'Dedicated Success Team',
-          description: 'Our internal optimisation experts continuously refine and improve your campaigns using data-driven insights and industry leading practices.'
+          description: convertSpelling('Our internal optimisation experts continuously refine and improve your campaigns using data-driven insights and industry leading practices.')
         },
         {
           title: 'Full-Funnel & Multi-Channel',
-          description: 'Seamless top and middle funnel strategies that utilise email outreach, paid advertising and smart retargeting for consistent engagement.'
+          description: convertSpelling('Seamless top and middle funnel strategies that utilise email outreach, paid advertising and smart retargeting for consistent engagement.')
         }
       ],
       additionalInfo: {
         integration: 'All of this feeds automatically into your CRM, live notifications and our live Analytics Dashboard.',
-        compatibility: 'Works hand-in-hand with our Personalised Landing Pages and Bespoke Content Creation.'
+        compatibility: convertSpelling('Works hand-in-hand with our Personalised Landing Pages and Bespoke Content Creation.')
       },
       solutions: ['outreach-solution']
     },
     {
       id: 'landing',
-      title: 'Personalised Landing Pages',
+      title: convertSpelling('Personalised Landing Pages'),
       icon: <Globe className="w-8 h-8" />,
       color: 'bg-gradient-to-br from-[#2A5EDB]/40 to-[#4C7AE6]/40 hover:from-[#2A5EDB] hover:to-[#4C7AE6]',
       description: 'Dynamic pages that adapt to every visitor',
       subtext: 'Real-time personalization engine',
       features: [
         {
-          title: 'Intelligent Personalisation',
-          description: 'Pages dynamically adapt to each visitor using real-time data, company information and behavioural insights to create a truly personalised experience for every visitor.'
+          title: convertSpelling('Intelligent Personalisation'),
+          description: convertSpelling('Pages dynamically adapt to each visitor using real-time data, company information and behavioural insights to create a truly personalised experience for every visitor.')
         },
         {
           title: 'Custom Video Integration',
-          description: 'Embed quality, personalised videos that speak directly to your prospect, featuring their name and tailored messaging and voiceovers.'
+          description: convertSpelling('Embed quality, personalised videos that speak directly to your prospect, featuring their name and tailored messaging and voiceovers.')
         },
         {
           title: 'Dynamic AI Voiceovers',
@@ -286,7 +311,7 @@ const ModernShowcase = () => {
       demo: 'Try It Now'
     },
     'ai-personalisation': {
-      title: 'Personalised Outreach at Scale',
+      title: convertSpelling('Personalised Outreach at Scale'),
       subtitle: 'Smart Messaging',
       description: "Reach more prospects while keeping it personal.",
       features: [
@@ -327,7 +352,7 @@ const ModernShowcase = () => {
         {
           icon: <Users className="w-5 h-5" />,
           title: 'Custom Intros',
-          description: 'Personalised video messages for prospects'
+          description: convertSpelling('Personalised video messages for prospects')
         },
         {
           icon: <FileVideo className="w-5 h-5" />,
@@ -351,7 +376,7 @@ const ModernShowcase = () => {
         {
           icon: <Video className="w-5 h-5" />,
           title: 'Custom Videos',
-          description: 'Create personalised video messages'
+          description: convertSpelling('Create personalised video messages')
         },
         {
           icon: <Globe className="w-5 h-5" />,
@@ -448,20 +473,7 @@ const ModernShowcase = () => {
     }
   };
 
-  // Fisher-Yates shuffle algorithm
-  const shuffleArray = (array) => {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
 
-  // Add useEffect for shuffling on mount
-  useEffect(() => {
-    setShuffledAudience(shuffleArray(audienceTypes));
-  }, []);
 
   // Add useEffect for initial delay
   useEffect(() => {
@@ -473,39 +485,65 @@ const ModernShowcase = () => {
 
   // Modify the existing useEffect for rotation
   useEffect(() => {
-    if (!isAnimationStarted || shuffledAudience.length === 0) return;
+    if (!isAnimationStarted) return;
     
     const interval = setInterval(() => {
-      setAudienceIndex((current) => (current + 1) % shuffledAudience.length);
+      setWorkflowIndex((current) => (current + 1) % workflowDescriptions.length);
       setCurrentColor((current) => (current + 1) % colors.length);
-    }, 3000);
+    }, 4000); // Slightly longer duration for readability
     return () => clearInterval(interval);
-  }, [isAnimationStarted, shuffledAudience]);
+  }, [isAnimationStarted]);
 
   // Update useEffect to handle URL-based navigation
   useEffect(() => {
-    if (location.pathname === '/pricing') {
+    const path = location.pathname;
+    
+    // Handle pricing routes (both regular and currency-specific)
+    if (path === '/pricing' || path.endsWith('/pricing')) {
       setShowPricing(true);
       setCurrentStep('pricing');
-    } else if (challengeId) {
+    } 
+    // Handle solution routes with challengeId
+    else if (challengeId) {
       const challenge = challenges.find(c => c.id === challengeId);
       if (challenge) {
         setSelectedChallenge(challenge);
         setCurrentStep('solutions');
       } else {
-        navigate('/', { replace: true });
+        // Navigate back to the appropriate home page based on currency
+        const prefix = getCurrencyPrefix();
+        navigate(prefix || '/', { replace: true });
       }
-    } else {
+    } 
+    // Handle home/challenges routes
+    else {
       setCurrentStep('challenges');
       setShowPricing(false);
     }
-  }, [location.pathname, challengeId]);
+  }, [location.pathname, challengeId, currency]);
+
+  // Update currency when prop changes (from route)
+  useEffect(() => {
+    if (currency && currency !== selectedCurrency) {
+      setSelectedCurrency(currency);
+    }
+  }, [currency]);
+
+  // Update showPricing when prop changes (from route)
+  useEffect(() => {
+    if (initialShowPricing !== undefined) {
+      setShowPricing(initialShowPricing);
+      if (initialShowPricing) {
+        setCurrentStep('pricing');
+      }
+    }
+  }, [initialShowPricing]);
 
   const pricingPlans = [
     {
       name: 'Self Managed',
       price: '399',
-      description: 'Access to our Personalisation Technology. Perfect for teams with established email infrastructure.',
+      description: convertSpelling('Access to our Personalisation Technology. Perfect for teams with established email infrastructure.'),
       features: [
         {
           name: '2000 Self-Serve AI Video Emails/month',
@@ -524,7 +562,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Pro AI VoiceOver Addon',
-          tooltip: 'Personalise your videos with a cloned AI voiceover or AI artist. . ',
+          tooltip: 'Personalise your videos with a cloned AI voiceover or AI artist.',
           included: true
         },
         {
@@ -564,13 +602,13 @@ const ModernShowcase = () => {
         },
         {
           name: 'CRM Integration',
-          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho.',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho - supported only.',
           included: true
         },
         {
-          name: 'Stats Updates',
-          tooltip: 'Comprehensive performance metrics and insights.',
-          included: false
+          name: 'Live Stats',
+          tooltip: 'Comprehensive daily performance metrics and insights.',
+          included: true
         },
         {
           name: 'Managed Replies',
@@ -588,7 +626,7 @@ const ModernShowcase = () => {
       features: [
         {
           name: '4,000 AI Video Emails/month',
-          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content.',
+          tooltip: convertSpelling('We generate and send personalised AI-crafted emails with embedded video content.'),
           included: true
         },
         {
@@ -597,8 +635,8 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: 'Advanced Personalisation',
-          tooltip: 'Personalise the landing page content with each prospects name.',
+          name: convertSpelling('Advanced Personalisation'),
+          tooltip: convertSpelling('Personalise the landing page content with each prospects name.'),
           included: true
         },
         {
@@ -617,13 +655,13 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: 'Optimisation Team',
-          tooltip: 'Dedicated team for campaign optimisation and strategy.',
+          name: convertSpelling('Optimisation Team'),
+          tooltip: convertSpelling('Dedicated team for campaign optimisation and strategy.'),
           included: true
         },
         {
-          name: 'Monthly Optimisation',
-          tooltip: 'Regular campaign optimisation and performance reviews.',
+          name: convertSpelling('Monthly Optimisation'),
+          tooltip: convertSpelling('Regular campaign optimisation and performance reviews.'),
           included: true
         },
         {
@@ -633,7 +671,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
+          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
           included: true
         },
         {
@@ -643,11 +681,11 @@ const ModernShowcase = () => {
         },
         {
           name: 'CRM Integration',
-          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho.',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho - supported only.',
           included: true
         },
         {
-          name: 'Daily Stats',
+          name: 'Live Stats',
           tooltip: 'Comprehensive daily performance metrics and insights.',
           included: true
         },
@@ -668,7 +706,7 @@ const ModernShowcase = () => {
       features: [
         {
           name: '10,000 AI Video Emails/month',
-          tooltip: 'We generate and send personalised AI-crafted emails with embedded video content.',
+          tooltip: convertSpelling('We generate and send personalised AI-crafted emails with embedded video content.'),
           included: true
         },
         {
@@ -677,8 +715,8 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: 'Hyper Personalisation',
-          tooltip: 'Personalise the landing page content with each prospects name as well as intro sentence.',
+          name: convertSpelling('Hyper Personalisation'),
+          tooltip: convertSpelling('Personalise the landing page content with each prospects name as well as intro sentence.'),
           included: true
         },
         {
@@ -697,13 +735,13 @@ const ModernShowcase = () => {
           included: true
         },
         {
-          name: 'Optimisation Team',
-          tooltip: 'Dedicated team for campaign optimisation and strategy.',
+          name: convertSpelling('Optimisation Team'),
+          tooltip: convertSpelling('Dedicated team for campaign optimisation and strategy.'),
           included: true
         },
         {
-          name: 'Weekly Optimisation',
-          tooltip: 'Regular campaign optimisation and performance reviews.',
+          name: convertSpelling('Weekly Optimisation'),
+          tooltip: convertSpelling('Regular campaign optimisation and performance reviews.'),
           included: true
         },
         {
@@ -713,7 +751,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'Smart Follow-ups',
-          tooltip: 'AI-powered follow-up sequences based on prospect behaviour.',
+          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
           included: true
         },
         {
@@ -723,7 +761,7 @@ const ModernShowcase = () => {
         },
         {
           name: 'CRM Integration',
-          tooltip: 'All + Salesforce & Custom API.',
+          tooltip: 'All standard + Salesforce & Custom API - supported only.',
           included: true
         },
         {
@@ -759,14 +797,24 @@ const ModernShowcase = () => {
     return `${symbol}${Math.round(basePrice * rate * multiplier).toLocaleString()}`;
   };
 
+  // Get currency prefix for URLs
+  const getCurrencyPrefix = () => {
+    if (currency === 'GBP') return '/UK';
+    if (currency === 'USD') return '/US';
+    if (currency === 'EUR') return '/EU';
+    return '';
+  };
+
   // Update navigation handlers
   const handleNavigation = (nextStep, challenge = null) => {
+    const prefix = getCurrencyPrefix();
+    
     if (nextStep === 'solutions' && challenge) {
-      navigate(`/solutions/${challenge.id}`);
+      navigate(`${prefix}/solutions/${challenge.id}`);
     } else if (nextStep === 'pricing') {
-      navigate('/pricing');
+      navigate(`${prefix}/pricing`);
     } else {
-      navigate('/');
+      navigate(prefix || '/');
     }
   };
 
@@ -843,25 +891,31 @@ const ModernShowcase = () => {
                     <span className="relative bg-gradient-to-br from-white via-white to-white/80 bg-clip-text text-transparent leading-[1.15] block pb-1">
                       Unlock the power of AI Agents
                     </span>
+                    {currency && (
+                      <div className="absolute top-0 right-0 text-xs font-normal text-white/40 bg-white/5 px-2 py-1 rounded-md backdrop-blur-sm border border-white/10">
+                        {currency === 'GBP' ? '🇬🇧 UK' : currency === 'USD' ? '🇺🇸 US' : '🇪🇺 EU'}
+                      </div>
+                    )}
                   </motion.h1>
                   <motion.p 
                     variants={itemVariants}
-                    className="text-white/60 text-base md:text-xl lg:text-2xl max-w-4xl mx-auto font-light leading-[1.6] mb-4"
+                    className="text-white/60 text-base md:text-xl lg:text-2xl max-w-5xl mx-auto font-light leading-[1.6] mb-4"
                   >
-                    We build systems for&nbsp;
+                    We build&nbsp;
                     <motion.span
-                      key={`word-system-${shuffledAudience[audienceIndex]}-${currentColor}`}
-                      initial={{ opacity: 0, y: 20 }}
+                      key={`workflow-type-${workflowIndex}`}
+                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
                       animate={{ 
                         opacity: [0, 1, 1, 0],
-                        y: [20, 0, 0, -20]
+                        y: [15, 0, 0, -15],
+                        scale: [0.95, 1, 1, 0.95]
                       }}
                       transition={{
-                        duration: 3,
-                        times: [0, 0.2, 0.8, 1],
-                        ease: [0.64, 0.112, 0.32, 1]
+                        duration: 4,
+                        times: [0, 0.15, 0.85, 1],
+                        ease: [0.25, 0.46, 0.45, 0.94]
                       }}
-                      className="font-medium relative inline-block min-w-[120px] text-center"
+                      className="font-semibold relative inline-block"
                     >
                       <motion.span
                         initial={{ color: "#FFFFFF" }}
@@ -873,36 +927,50 @@ const ModernShowcase = () => {
                             "#FFFFFF"
                           ],
                           textShadow: [
-                            "0 0 20px rgba(255,255,255,0)",
-                            `0 0 25px ${colors[currentColor].shadow}`,
-                            `0 0 25px ${colors[currentColor].shadow}`,
-                            "0 0 20px rgba(255,255,255,0)"
+                            "0 0 0px rgba(255,255,255,0)",
+                            `0 0 20px ${colors[currentColor].shadow}`,
+                            `0 0 20px ${colors[currentColor].shadow}`,
+                            "0 0 0px rgba(255,255,255,0)"
                           ]
                         }}
                         transition={{
-                          duration: 3,
-                          times: [0, 0.2, 0.8, 1],
+                          duration: 4,
+                          times: [0, 0.15, 0.85, 1],
                           ease: "easeInOut"
                         }}
+                        className="relative"
                       >
-                        {shuffledAudience[audienceIndex]}
+                        {workflowDescriptions[workflowIndex].type}
+                        <motion.div
+                          className="absolute -bottom-1 left-0 h-0.5 bg-current"
+                          initial={{ width: "0%" }}
+                          animate={{
+                            width: ["0%", "100%", "100%", "0%"]
+                          }}
+                          transition={{
+                            duration: 4,
+                            times: [0, 0.15, 0.85, 1],
+                            ease: "easeInOut"
+                          }}
+                        />
                       </motion.span>
                     </motion.span>
-                    &nbsp;and can find, research and outreach to&nbsp;
+                    &nbsp;workflows to help you&nbsp;
                     <motion.span
-                      key={`word-audience-${shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}-${(currentColor + 1) % colors.length}`}
-                      initial={{ opacity: 0, y: 20 }}
+                      key={`workflow-purpose-${workflowIndex}`}
+                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
                       animate={{ 
                         opacity: [0, 1, 1, 0],
-                        y: [20, 0, 0, -20]
+                        y: [15, 0, 0, -15],
+                        scale: [0.95, 1, 1, 0.95]
                       }}
                       transition={{
-                        duration: 3,
-                        times: [0, 0.2, 0.8, 1],
-                        ease: [0.64, 0.112, 0.32, 1],
-                        delay: 0.5
+                        duration: 4,
+                        times: [0, 0.15, 0.85, 1],
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                        delay: 0.1
                       }}
-                      className="font-medium relative inline-block min-w-[120px] text-center"
+                      className="font-semibold relative inline-block"
                     >
                       <motion.span
                         initial={{ color: "#FFFFFF" }}
@@ -914,23 +982,37 @@ const ModernShowcase = () => {
                             "#FFFFFF"
                           ],
                           textShadow: [
-                            "0 0 20px rgba(255,255,255,0)",
-                            `0 0 25px ${colors[(currentColor + 1) % colors.length].shadow}`,
-                            `0 0 25px ${colors[(currentColor + 1) % colors.length].shadow}`,
-                            "0 0 20px rgba(255,255,255,0)"
+                            "0 0 0px rgba(255,255,255,0)",
+                            `0 0 20px ${colors[(currentColor + 1) % colors.length].shadow}`,
+                            `0 0 20px ${colors[(currentColor + 1) % colors.length].shadow}`,
+                            "0 0 0px rgba(255,255,255,0)"
                           ]
                         }}
                         transition={{
-                          duration: 3,
-                          times: [0, 0.2, 0.8, 1],
+                          duration: 4,
+                          times: [0, 0.15, 0.85, 1],
                           ease: "easeInOut",
-                          delay: 0.5
+                          delay: 0.1
                         }}
+                        className="relative"
                       >
-                        {shuffledAudience[(audienceIndex + 5) % shuffledAudience.length]}
+                        {convertSpelling(workflowDescriptions[workflowIndex].purpose)}
+                        <motion.div
+                          className="absolute -bottom-1 left-0 h-0.5 bg-current"
+                          initial={{ width: "0%" }}
+                          animate={{
+                            width: ["0%", "100%", "100%", "0%"]
+                          }}
+                          transition={{
+                            duration: 4,
+                            times: [0, 0.15, 0.85, 1],
+                            ease: "easeInOut",
+                            delay: 0.1
+                          }}
+                        />
                       </motion.span>
                     </motion.span>
-                    &nbsp;with personalised content.
+                    .
                   </motion.p>
                 </motion.div>
 
@@ -1167,10 +1249,15 @@ const ModernShowcase = () => {
                     transition={{ delay: 0.2 }}
                     className="mx-auto text-center"
                   >
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
+                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight relative">
                       <span className="bg-gradient-to-br from-white via-white to-white/80 bg-clip-text text-transparent">
                         Scale Your Outreach, Your Way
                       </span>
+                      {currency && (
+                        <div className="absolute top-0 right-0 text-xs font-normal text-white/40 bg-white/5 px-2 py-1 rounded-md backdrop-blur-sm border border-white/10">
+                          {currency === 'GBP' ? '🇬🇧 UK' : currency === 'USD' ? '🇺🇸 US' : '🇪🇺 EU'}
+                        </div>
+                      )}
                     </h2>
                     <p className="text-white/60 text-xl max-w-2xl mx-auto mb-8">
                       Choose the plan that matches your growth ambitions
@@ -1180,17 +1267,30 @@ const ModernShowcase = () => {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
                       {/* Currency Toggle */}
                       <div className="flex items-center gap-2 bg-white/5 rounded-lg p-1 backdrop-blur-xl">
-                        {Object.keys(currencyRates).map((currency) => (
+                        {Object.keys(currencyRates).map((currencyOption) => (
                           <button
-                            key={currency}
-                            onClick={() => setSelectedCurrency(currency)}
+                            key={currencyOption}
+                            onClick={() => {
+                              // Navigate to the appropriate currency-specific URL
+                              const newPrefix = currencyOption === 'GBP' ? '/UK' : 
+                                               currencyOption === 'USD' ? '/US' : 
+                                               currencyOption === 'EUR' ? '/EU' : '';
+                              
+                              if (showPricing) {
+                                navigate(`${newPrefix}/pricing`);
+                              } else if (selectedChallenge) {
+                                navigate(`${newPrefix}/solutions/${selectedChallenge.id}`);
+                              } else {
+                                navigate(newPrefix || '/');
+                              }
+                            }}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                              selectedCurrency === currency
+                              selectedCurrency === currencyOption
                                 ? 'bg-white/10 text-white'
                                 : 'text-white/60 hover:text-white'
                             }`}
                           >
-                            {currency}
+                            {currencyOption}
                           </button>
                         ))}
                       </div>
@@ -1247,7 +1347,7 @@ const ModernShowcase = () => {
                         className={`relative rounded-2xl bg-gradient-to-br ${plan.gradient}
                           backdrop-blur-xl border border-white/10 overflow-hidden
                           transform-gpu transition-all duration-300
-                          hover:border-white/20 hover:shadow-2xl flex flex-col`}
+                          hover:border-white/20 hover:shadow-2xl flex flex-col h-full`}
                       >
                         {plan.popular && (
                           <div className="absolute top-0 right-0 mt-4 mr-4">
@@ -1256,7 +1356,8 @@ const ModernShowcase = () => {
                             </span>
                           </div>
                         )}
-                        <div className="p-8 flex-1">
+                        {/* Header Section - Fixed Height */}
+                        <div className="p-8 flex-shrink-0">
                           <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
                           <div className="flex items-baseline mb-2">
                             <span className="text-4xl font-bold text-white">
@@ -1267,7 +1368,7 @@ const ModernShowcase = () => {
                             )}
                           </div>
                           {billingPeriod === 'monthly' && plan.price !== 'Custom' && (
-                            <div className="flex items-center gap-2 mb-4">
+                            <div className="flex items-center gap-2 mb-4 h-6">
                               <motion.div 
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -1278,7 +1379,12 @@ const ModernShowcase = () => {
                               </motion.div>
                             </div>
                           )}
-                          <p className="text-white/80 mb-6 min-h-[48px]">{plan.description}</p>
+                          {billingPeriod === 'annual' && (
+                            <div className="h-6 mb-4"></div>
+                          )}
+                          <div className="h-12 mb-6">
+                            <p className="text-white/80 text-sm leading-tight">{plan.description}</p>
+                          </div>
                           {selectedCurrency === 'GBP' && plan.price !== 'Custom' && (
                             <p className="text-white/60 text-sm mb-4">*Price excludes VAT</p>
                           )}
@@ -1296,65 +1402,112 @@ const ModernShowcase = () => {
                             Get Started
                           </motion.button>
                         </div>
-                        <div className="border-t border-white/10 p-6">
-                          <p className="text-sm font-medium text-white/80 mb-4">What's included:</p>
-                          <ul className="space-y-3">
-                            {plan.features.map((feature, i) => (
-                              <li key={i} className="group relative flex items-start gap-3">
-                                {feature.included ? (
-                                  <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                ) : (
-                                  <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
-                                    <div className="w-1 h-1 rounded-full bg-white/20" />
-                                  </div>
-                                )}
-                                <span className={`text-sm ${feature.included ? 'text-white/90' : 'text-white/40'} leading-relaxed`}>
-                                  {feature.name}
+                        
+                        {/* Features Section - Fixed Height to ensure alignment */}
+                        <div className="border-t border-white/10 flex-1 flex flex-col">
+                          <div className="p-6" style={{ minHeight: '420px' }}>
+                            <p className="text-sm font-medium text-white/80 mb-4">What's included:</p>
+                            <ul className="space-y-3 mb-6">
+                              {plan.features.map((feature, i) => (
+                                <li key={i} className="group relative flex items-start gap-3">
+                                  {feature.included ? (
+                                    <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                  ) : (
+                                    <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
+                                      <div className="w-1 h-1 rounded-full bg-white/20" />
+                                    </div>
+                                  )}
+                                  <span className={`text-sm ${feature.included ? 'text-white/90' : 'text-white/40'} leading-relaxed`}>
+                                    {feature.name}
+                                  </span>
+                                  {feature.tooltip && (
+                                    <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 
+                                      group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10 backdrop-blur-sm"
+                                    >
+                                      {feature.tooltip}
+                                    </div>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          
+                          {/* Bolt Ons Section - Perfectly Aligned titles */}
+                          <div className="border-t border-white/10 p-6 flex-shrink-0">
+                            <p className="text-sm font-medium text-white/80 mb-4">Bolt Ons:</p>
+                            <ul className="space-y-3">
+                              {/* Plan-specific bolt-ons for Self Managed */}
+                              {plan.name === 'Self Managed' && (
+                                <>
+                                  <li className="group relative flex items-start gap-3">
+                                    <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-sm text-white/90 leading-relaxed">
+                                      Pro AI VoiceOver Upgrade
+                                    </span>
+                                    <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                      Upgrade from basic AI voiceover to professional AI voice cloning and premium AI voices.
+                                    </div>
+                                  </li>
+                                  <li className="group relative flex items-start gap-3">
+                                    <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-sm text-white/90 leading-relaxed">
+                                      Professional Ad Videos
+                                    </span>
+                                    <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                      Add bespoke professionally edited videos perfect for capturing attention and driving engagement.
+                                    </div>
+                                  </li>
+                                </>
+                              )}
+                              
+                              {/* Universal bolt-ons for all plans */}
+                              <li className="group relative flex items-start gap-3">
+                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <span className="text-sm text-white/90 leading-relaxed">
+                                  Custom CRM Integration
                                 </span>
-                                {feature.tooltip && (
-                                  <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                    {feature.tooltip}
-                                  </div>
-                                )}
+                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                  Custom integrations with any CRM system beyond our standard supported platforms.
+                                </div>
                               </li>
-                            ))}
-                          </ul>
-                          <p className="text-sm font-medium text-white/80 mb-4 mt-6">Bolt Ons:</p>
-                          <ul className="space-y-3">
-                             <li className="group relative flex items-start gap-3">
-                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
-                                <div className="w-1 h-1 rounded-full bg-white/20" />
-                              </div>
-                              <span className="text-sm text-white/40 leading-relaxed">
-                                Automated AI Workflows
-                              </span>
-                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                Custom built workflows to automate almost anything.
-                              </div>
-                            </li>
-                            <li className="group relative flex items-start gap-3">
-                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
-                                <div className="w-1 h-1 rounded-full bg-white/20" />
-                              </div>
-                              <span className="text-sm text-white/40 leading-relaxed">
-                                Automated Video Workflows
-                              </span>
-                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                Custom built workflows to automate video production.
-                              </div>
-                            </li>
-                            <li className="group relative flex items-start gap-3">
-                              <div className="w-5 h-5 flex items-center justify-center mt-0.5 flex-shrink-0">
-                                <div className="w-1 h-1 rounded-full bg-white/20" />
-                              </div>
-                              <span className="text-sm text-white/40 leading-relaxed">
-                                One-Off Bespoke 60s Video
-                              </span>
-                              <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
-                                Bespoke, high quality product/brand explainer video.
-                              </div>
-                            </li>
-                          </ul>
+                              <li className="group relative flex items-start gap-3">
+                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <span className="text-sm text-white/90 leading-relaxed">
+                                  Custom Landing Page Design & Build
+                                </span>
+                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                  Full design, build, and hosting of a completely custom landing page tailored to your brand and campaign needs.
+                                </div>
+                              </li>
+                              <li className="group relative flex items-start gap-3">
+                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <span className="text-sm text-white/90 leading-relaxed">
+                                  Automated AI Workflows
+                                </span>
+                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                  Custom built workflows to automate almost anything.
+                                </div>
+                              </li>
+                              <li className="group relative flex items-start gap-3">
+                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <span className="text-sm text-white/90 leading-relaxed">
+                                  Automated Video Workflows
+                                </span>
+                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                  Custom built workflows to automate video production.
+                                </div>
+                              </li>
+                              <li className="group relative flex items-start gap-3">
+                                <Plus className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                                <span className="text-sm text-white/90 leading-relaxed">
+                                  One-Off Bespoke 60s Video
+                                </span>
+                                <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 shadow-xl border border-white/10">
+                                  Bespoke, high quality product/brand explainer video.
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </motion.div>
                     ))}
@@ -1387,8 +1540,7 @@ const ModernShowcase = () => {
                                     </div>
                                     <span className="text-white/90">{feature.name}</span>
                                     {feature.tooltip && (
-                                      <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900/90 
-                                        rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 
+                                      <div className="absolute left-0 -top-2 w-64 translate-y-[-100%] p-2 bg-gray-900 rounded-lg text-xs text-white opacity-0 invisible group-hover:opacity-100 
                                         group-hover:visible transition-all duration-200 pointer-events-none z-50 
                                         shadow-xl border border-white/10 backdrop-blur-sm"
                                       >
