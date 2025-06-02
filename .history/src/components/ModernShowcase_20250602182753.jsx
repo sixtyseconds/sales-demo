@@ -905,8 +905,13 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
 
     try {
       // Create email content
-      const emailSubject = 'Custom Plan Inquiry from Product Page';
-      const emailBody = `New Custom Plan Inquiry from Product Page
+      const emailContent = {
+        to_email: 'app@sixtyseconds.video,andrew.bryce@sixtyseconds.video',
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: 'Custom Plan Inquiry from Product Page',
+        message: `
+New Custom Plan Inquiry from Product Page
 
 Contact Details:
 - Name: ${formData.name}
@@ -923,164 +928,44 @@ Timeline: ${formData.timeline}
 Source: Product Page - Custom Plan Section
 Currency Selected: ${selectedCurrency}
 Billing Period: ${billingPeriod}
-Timestamp: ${new Date().toLocaleString()}`;
+Timestamp: ${new Date().toLocaleString()}
+        `
+      };
 
-      // Updated recipients - Slack integration and Andrew's email
-      const recipients = ['leads-aaaaayhbcsc2dawosfuuiidvm4@sixtysecondsapp.slack.com', 'andrew.bryce@sixtyseconds.video'];
-
-      // Method 1: Try server-side API endpoint first
-      try {
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            to: recipients,
-            subject: emailSubject,
-            body: emailBody,
-            from: formData.email,
-            fromName: formData.name
-          })
-        });
-
-        const result = await response.json();
-        
-        if (response.ok) {
-          setSubmitStatus('success');
-          // Reset form
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            phone: '',
-            requirements: '',
-            budget: '',
-            timeline: ''
-          });
-          // Close modal after 2 seconds
-          setTimeout(() => {
-            setShowCustomModal(false);
-            setSubmitStatus(null);
-          }, 2000);
-          return;
-        } else if (result.fallback) {
-          // If API returned fallback flag, continue to client-side methods
-          console.log('Server API unavailable, trying client-side methods');
-        } else {
-          throw new Error(result.message || 'Server error');
-        }
-      } catch (error) {
-        console.log('Server API failed:', error.message);
-      }
-
-      // Method 2: Try FormSubmit service directly (client-side)
-      try {
-        const formSubmitResponse = await fetch('https://formsubmit.co/ajax/leads-aaaaayhbcsc2dawosfuuiidvm4@sixtysecondsapp.slack.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            company: formData.company,
-            phone: formData.phone,
-            subject: emailSubject,
-            message: emailBody,
-            _cc: 'andrew.bryce@sixtyseconds.video',
-            _captcha: 'false',
-            _template: 'basic'
-          })
-        });
-
-        if (formSubmitResponse.ok) {
-          setSubmitStatus('success');
-          // Reset form
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            phone: '',
-            requirements: '',
-            budget: '',
-            timeline: ''
-          });
-          // Close modal after 2 seconds
-          setTimeout(() => {
-            setShowCustomModal(false);
-            setSubmitStatus(null);
-          }, 2000);
-          return;
-        }
-      } catch (error) {
-        console.log('FormSubmit failed:', error);
-      }
-
-      // Method 3: Try another email service (Netlify Forms as backup)
-      try {
-        const netlifyResponse = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({
-            'form-name': 'custom-inquiry',
-            'name': formData.name,
-            'email': formData.email,
-            'company': formData.company,
-            'phone': formData.phone,
-            'requirements': formData.requirements,
-            'budget': formData.budget,
-            'timeline': formData.timeline,
-            'currency': selectedCurrency,
-            'billing': billingPeriod
-          }).toString()
-        });
-
-        if (netlifyResponse.ok) {
-          setSubmitStatus('success');
-          // Reset form
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            phone: '',
-            requirements: '',
-            budget: '',
-            timeline: ''
-          });
-          // Close modal after 2 seconds
-          setTimeout(() => {
-            setShowCustomModal(false);
-            setSubmitStatus(null);
-          }, 2000);
-          return;
-        }
-      } catch (error) {
-        console.log('Netlify Forms failed:', error);
-      }
-
-      // Final fallback: mailto (only if all else fails)
-      const mailtoLink = `mailto:${recipients.join(',')}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-      window.location.href = mailtoLink;
-      
-      setSubmitStatus('success');
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        requirements: '',
-        budget: '',
-        timeline: ''
+      // Send email using EmailJS (you'll need to set up EmailJS service)
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_sixtyseconds', // You'll need to configure this
+          template_id: 'template_custom_inquiry', // You'll need to configure this
+          user_id: 'user_sixtyseconds', // You'll need to configure this
+          template_params: emailContent
+        })
       });
-      // Close modal after 2 seconds
-      setTimeout(() => {
-        setShowCustomModal(false);
-        setSubmitStatus(null);
-      }, 2000);
 
+      if (response.ok) {
+        setSubmitStatus('success');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          requirements: '',
+          budget: '',
+          timeline: ''
+        });
+        // Close modal after 2 seconds
+        setTimeout(() => {
+          setShowCustomModal(false);
+          setSubmitStatus(null);
+        }, 2000);
+      } else {
+        throw new Error('Failed to send email');
+      }
     } catch (error) {
       console.error('Error sending email:', error);
       setSubmitStatus('error');
@@ -1096,42 +981,6 @@ Timestamp: ${new Date().toLocaleString()}`;
       ...prev,
       [name]: value
     }));
-  };
-
-  // Get currency-dependent budget options
-  const getBudgetOptions = () => {
-    const symbol = currencyRates[selectedCurrency]?.symbol || '£';
-    
-    switch (selectedCurrency) {
-      case 'USD':
-        return [
-          { value: '', label: 'Select budget range' },
-          { value: '$6,000 - $13,000', label: '$6,000 - $13,000' },
-          { value: '$13,000 - $32,000', label: '$13,000 - $32,000' },
-          { value: '$32,000 - $65,000', label: '$32,000 - $65,000' },
-          { value: '$65,000+', label: '$65,000+' },
-          { value: 'Let\'s discuss', label: 'Let\'s discuss' }
-        ];
-      case 'EUR':
-        return [
-          { value: '', label: 'Select budget range' },
-          { value: '€5,500 - €12,000', label: '€5,500 - €12,000' },
-          { value: '€12,000 - €29,000', label: '€12,000 - €29,000' },
-          { value: '€29,000 - €58,000', label: '€29,000 - €58,000' },
-          { value: '€58,000+', label: '€58,000+' },
-          { value: 'Let\'s discuss', label: 'Let\'s discuss' }
-        ];
-      case 'GBP':
-      default:
-        return [
-          { value: '', label: 'Select budget range' },
-          { value: '£5,000 - £10,000', label: '£5,000 - £10,000' },
-          { value: '£10,000 - £25,000', label: '£10,000 - £25,000' },
-          { value: '£25,000 - £50,000', label: '£25,000 - £50,000' },
-          { value: '£50,000+', label: '£50,000+' },
-          { value: 'Let\'s discuss', label: 'Let\'s discuss' }
-        ];
-    }
   };
 
   return (
@@ -2045,11 +1894,12 @@ Timestamp: ${new Date().toLocaleString()}`;
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-white/20 focus:outline-none transition-colors"
                     >
-                      {getBudgetOptions().map((option, index) => (
-                        <option key={index} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
+                      <option value="">Select budget range</option>
+                      <option value="£5,000 - £10,000">£5,000 - £10,000</option>
+                      <option value="£10,000 - £25,000">£10,000 - £25,000</option>
+                      <option value="£25,000 - £50,000">£25,000 - £50,000</option>
+                      <option value="£50,000+">£50,000+</option>
+                      <option value="Let's discuss">Let's discuss</option>
                     </select>
                   </div>
                   <div>
