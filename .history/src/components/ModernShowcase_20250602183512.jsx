@@ -928,7 +928,7 @@ Timestamp: ${new Date().toLocaleString()}`;
       // Updated recipients - Slack integration and Andrew's email
       const recipients = ['leads-aaaaayhbcsc2dawosfuuiidvm4@sixtysecondsapp.slack.com', 'andrew.bryce@sixtyseconds.video'];
 
-      // Method 1: Try server-side API endpoint first
+      // Method 1: Try to send via fetch to a simple endpoint
       try {
         const response = await fetch('/api/send-email', {
           method: 'POST',
@@ -944,8 +944,6 @@ Timestamp: ${new Date().toLocaleString()}`;
           })
         });
 
-        const result = await response.json();
-        
         if (response.ok) {
           setSubmitStatus('success');
           // Reset form
@@ -964,38 +962,35 @@ Timestamp: ${new Date().toLocaleString()}`;
             setSubmitStatus(null);
           }, 2000);
           return;
-        } else if (result.fallback) {
-          // If API returned fallback flag, continue to client-side methods
-          console.log('Server API unavailable, trying client-side methods');
-        } else {
-          throw new Error(result.message || 'Server error');
         }
       } catch (error) {
-        console.log('Server API failed:', error.message);
+        console.log('API endpoint not available, trying EmailJS directly');
       }
 
-      // Method 2: Try FormSubmit service directly (client-side)
+      // Method 2: Try EmailJS directly (client-side)
       try {
-        const formSubmitResponse = await fetch('https://formsubmit.co/ajax/leads-aaaaayhbcsc2dawosfuuiidvm4@sixtysecondsapp.slack.com', {
+        // Using EmailJS public API - you'll need to set up EmailJS service
+        const emailjsResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
           },
           body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            company: formData.company,
-            phone: formData.phone,
-            subject: emailSubject,
-            message: emailBody,
-            _cc: 'andrew.bryce@sixtyseconds.video',
-            _captcha: 'false',
-            _template: 'basic'
+            service_id: 'service_sixtyseconds', // Replace with your EmailJS service ID
+            template_id: 'template_custom_inquiry', // Replace with your EmailJS template ID
+            user_id: 'user_sixtyseconds', // Replace with your EmailJS user ID
+            template_params: {
+              to_email: recipients.join(','),
+              from_name: formData.name,
+              from_email: formData.email,
+              subject: emailSubject,
+              message: emailBody,
+              reply_to: formData.email
+            }
           })
         });
 
-        if (formSubmitResponse.ok) {
+        if (emailjsResponse.ok) {
           setSubmitStatus('success');
           // Reset form
           setFormData({
@@ -1015,53 +1010,13 @@ Timestamp: ${new Date().toLocaleString()}`;
           return;
         }
       } catch (error) {
-        console.log('FormSubmit failed:', error);
+        console.log('EmailJS failed, falling back to mailto');
       }
 
-      // Method 3: Try another email service (Netlify Forms as backup)
-      try {
-        const netlifyResponse = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({
-            'form-name': 'custom-inquiry',
-            'name': formData.name,
-            'email': formData.email,
-            'company': formData.company,
-            'phone': formData.phone,
-            'requirements': formData.requirements,
-            'budget': formData.budget,
-            'timeline': formData.timeline,
-            'currency': selectedCurrency,
-            'billing': billingPeriod
-          }).toString()
-        });
-
-        if (netlifyResponse.ok) {
-          setSubmitStatus('success');
-          // Reset form
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            phone: '',
-            requirements: '',
-            budget: '',
-            timeline: ''
-          });
-          // Close modal after 2 seconds
-          setTimeout(() => {
-            setShowCustomModal(false);
-            setSubmitStatus(null);
-          }, 2000);
-          return;
-        }
-      } catch (error) {
-        console.log('Netlify Forms failed:', error);
-      }
-
-      // Final fallback: mailto (only if all else fails)
+      // Method 3: Fallback to mailto link if all else fails
       const mailtoLink = `mailto:${recipients.join(',')}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Open mailto link
       window.location.href = mailtoLink;
       
       setSubmitStatus('success');

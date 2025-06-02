@@ -6,7 +6,7 @@ import {
   Target, Megaphone, PlayCircle, FileVideo,
   ArrowRight, ChevronRight, Sparkles, Globe,
   Mail, LinkedinIcon, MessageSquare, ArrowLeft,
-  Clock, Search, Zap, MousePointer, Check, Plus, X
+  Clock, Search, Zap, MousePointer, Check, Plus
 } from 'lucide-react';
 
 const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
@@ -24,18 +24,6 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
   const [selectedCurrency, setSelectedCurrency] = useState(currency || 'GBP');
   const [billingPeriod, setBillingPeriod] = useState('monthly');
   const [navigationHistory, setNavigationHistory] = useState(['challenges']);
-  const [showCustomModal, setShowCustomModal] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    requirements: '',
-    budget: '',
-    timeline: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
 
   // Utility function to convert UK spelling to US spelling when USD is selected
   const convertSpelling = (text) => {
@@ -592,8 +580,8 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
           included: false
         },
         {
-          name: 'Standard CRM Integration*',
-          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho - supported platforms.',
+          name: 'CRM Integration',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho - supported only.',
           included: true
         },
         {
@@ -605,7 +593,12 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
           name: 'Managed Replies',
           tooltip: 'Our internal team monitor and reply to prospect messages on time.',
           included: false
-        }
+        },
+        {
+          name: 'Standard CRM Integration*',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho - supported platforms.',
+          included: true
+        },
       ],
       gradient: 'from-[#8129D7]/40 to-[#9747FF]/40',
       buttonGradient: 'from-[#8129D7] to-[#9747FF]'
@@ -670,8 +663,8 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
           included: true
         },
         {
-          name: 'Standard CRM Integration*',
-          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho - supported platforms.',
+          name: 'CRM Integration',
+          tooltip: 'Webhooks, HubSpot, Pipedrive, Zoho - supported only.',
           included: true
         },
         {
@@ -744,13 +737,23 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
           included: true
         },
         {
+          name: 'Smart Follow-ups',
+          tooltip: convertSpelling('AI-powered follow-up sequences based on prospect behaviour.'),
+          included: true
+        },
+        {
+          name: 'Multi-Channel Ad Management',
+          tooltip: 'We run your LinkedIn and Facebook advertising campaigns (ad spend not included).',
+          included: true
+        },
+        {
           name: '4x 30 second Ad Videos',
           tooltip: 'Bespoke videos with professional editing - Perfect for capturing attention.',
           included: true
         },
         {
-          name: 'Custom CRM Integration',
-          tooltip: 'All standard + Salesforce & Custom API - supported platforms.',
+          name: 'CRM Integration',
+          tooltip: 'All standard + Salesforce & Custom API - supported only.',
           included: true
         },
         {
@@ -761,11 +764,6 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
         {
           name: 'Managed Replies',
           tooltip: 'Our internal team monitor and reply to prospect messages on time.',
-          included: true
-        },
-        {
-          name: 'Multi-Channel Ad Management',
-          tooltip: 'We run your LinkedIn and Facebook advertising campaigns (ad spend not included).',
           included: true
         }
       ],
@@ -895,243 +893,6 @@ const ModernShowcase = ({ currency, showPricing: initialShowPricing }) => {
 
   const handleBack = () => {
     navigate(-1);
-  };
-
-  // Handle custom form submission
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    try {
-      // Create email content
-      const emailSubject = 'Custom Plan Inquiry from Product Page';
-      const emailBody = `New Custom Plan Inquiry from Product Page
-
-Contact Details:
-- Name: ${formData.name}
-- Email: ${formData.email}
-- Company: ${formData.company}
-- Phone: ${formData.phone}
-
-Requirements:
-${formData.requirements}
-
-Budget Range: ${formData.budget}
-Timeline: ${formData.timeline}
-
-Source: Product Page - Custom Plan Section
-Currency Selected: ${selectedCurrency}
-Billing Period: ${billingPeriod}
-Timestamp: ${new Date().toLocaleString()}`;
-
-      // Updated recipients - Slack integration and Andrew's email
-      const recipients = ['leads-aaaaayhbcsc2dawosfuuiidvm4@sixtysecondsapp.slack.com', 'andrew.bryce@sixtyseconds.video'];
-
-      // Method 1: Try server-side API endpoint first
-      try {
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            to: recipients,
-            subject: emailSubject,
-            body: emailBody,
-            from: formData.email,
-            fromName: formData.name
-          })
-        });
-
-        const result = await response.json();
-        
-        if (response.ok) {
-          setSubmitStatus('success');
-          // Reset form
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            phone: '',
-            requirements: '',
-            budget: '',
-            timeline: ''
-          });
-          // Close modal after 2 seconds
-          setTimeout(() => {
-            setShowCustomModal(false);
-            setSubmitStatus(null);
-          }, 2000);
-          return;
-        } else if (result.fallback) {
-          // If API returned fallback flag, continue to client-side methods
-          console.log('Server API unavailable, trying client-side methods');
-        } else {
-          throw new Error(result.message || 'Server error');
-        }
-      } catch (error) {
-        console.log('Server API failed:', error.message);
-      }
-
-      // Method 2: Try FormSubmit service directly (client-side)
-      try {
-        const formSubmitResponse = await fetch('https://formsubmit.co/ajax/leads-aaaaayhbcsc2dawosfuuiidvm4@sixtysecondsapp.slack.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            company: formData.company,
-            phone: formData.phone,
-            subject: emailSubject,
-            message: emailBody,
-            _cc: 'andrew.bryce@sixtyseconds.video',
-            _captcha: 'false',
-            _template: 'basic'
-          })
-        });
-
-        if (formSubmitResponse.ok) {
-          setSubmitStatus('success');
-          // Reset form
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            phone: '',
-            requirements: '',
-            budget: '',
-            timeline: ''
-          });
-          // Close modal after 2 seconds
-          setTimeout(() => {
-            setShowCustomModal(false);
-            setSubmitStatus(null);
-          }, 2000);
-          return;
-        }
-      } catch (error) {
-        console.log('FormSubmit failed:', error);
-      }
-
-      // Method 3: Try another email service (Netlify Forms as backup)
-      try {
-        const netlifyResponse = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({
-            'form-name': 'custom-inquiry',
-            'name': formData.name,
-            'email': formData.email,
-            'company': formData.company,
-            'phone': formData.phone,
-            'requirements': formData.requirements,
-            'budget': formData.budget,
-            'timeline': formData.timeline,
-            'currency': selectedCurrency,
-            'billing': billingPeriod
-          }).toString()
-        });
-
-        if (netlifyResponse.ok) {
-          setSubmitStatus('success');
-          // Reset form
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            phone: '',
-            requirements: '',
-            budget: '',
-            timeline: ''
-          });
-          // Close modal after 2 seconds
-          setTimeout(() => {
-            setShowCustomModal(false);
-            setSubmitStatus(null);
-          }, 2000);
-          return;
-        }
-      } catch (error) {
-        console.log('Netlify Forms failed:', error);
-      }
-
-      // Final fallback: mailto (only if all else fails)
-      const mailtoLink = `mailto:${recipients.join(',')}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-      window.location.href = mailtoLink;
-      
-      setSubmitStatus('success');
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        requirements: '',
-        budget: '',
-        timeline: ''
-      });
-      // Close modal after 2 seconds
-      setTimeout(() => {
-        setShowCustomModal(false);
-        setSubmitStatus(null);
-      }, 2000);
-
-    } catch (error) {
-      console.error('Error sending email:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  // Handle form input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  // Get currency-dependent budget options
-  const getBudgetOptions = () => {
-    const symbol = currencyRates[selectedCurrency]?.symbol || '£';
-    
-    switch (selectedCurrency) {
-      case 'USD':
-        return [
-          { value: '', label: 'Select budget range' },
-          { value: '$6,000 - $13,000', label: '$6,000 - $13,000' },
-          { value: '$13,000 - $32,000', label: '$13,000 - $32,000' },
-          { value: '$32,000 - $65,000', label: '$32,000 - $65,000' },
-          { value: '$65,000+', label: '$65,000+' },
-          { value: 'Let\'s discuss', label: 'Let\'s discuss' }
-        ];
-      case 'EUR':
-        return [
-          { value: '', label: 'Select budget range' },
-          { value: '€5,500 - €12,000', label: '€5,500 - €12,000' },
-          { value: '€12,000 - €29,000', label: '€12,000 - €29,000' },
-          { value: '€29,000 - €58,000', label: '€29,000 - €58,000' },
-          { value: '€58,000+', label: '€58,000+' },
-          { value: 'Let\'s discuss', label: 'Let\'s discuss' }
-        ];
-      case 'GBP':
-      default:
-        return [
-          { value: '', label: 'Select budget range' },
-          { value: '£5,000 - £10,000', label: '£5,000 - £10,000' },
-          { value: '£10,000 - £25,000', label: '£10,000 - £25,000' },
-          { value: '£25,000 - £50,000', label: '£25,000 - £50,000' },
-          { value: '£50,000+', label: '£50,000+' },
-          { value: 'Let\'s discuss', label: 'Let\'s discuss' }
-        ];
-    }
   };
 
   return (
@@ -1736,9 +1497,9 @@ Timestamp: ${new Date().toLocaleString()}`;
                           </motion.a>
                         </div>
                         
-                        {/* Features Section - Flexible Height */}
+                        {/* Features Section - Fixed Height to ensure alignment */}
                         <div className="border-t border-white/10 flex-1 flex flex-col">
-                          <div className="p-6 flex-1">
+                          <div className="p-6" style={{ minHeight: '420px' }}>
                             <p className="text-sm font-medium text-white/80 mb-4">What's included:</p>
                             <ul className="space-y-3 mb-6">
                               {plan.features.map((feature, i) => (
@@ -1765,10 +1526,10 @@ Timestamp: ${new Date().toLocaleString()}`;
                             </ul>
                           </div>
                           
-                          {/* Bolt Ons Section - Fixed Height for Alignment */}
-                          <div className="border-t border-white/10 p-6 flex-shrink-0" style={{ minHeight: '280px' }}>
+                          {/* Bolt Ons Section - Perfectly Aligned titles */}
+                          <div className="border-t border-white/10 p-6 flex-shrink-0">
                             <p className="text-sm font-medium text-white/80 mb-4">Bolt Ons:</p>
-                            <ul className="space-y-3 mb-6">
+                            <ul className="space-y-3">
                               {/* Plan-specific bolt-ons for Self Managed */}
                               {plan.name === 'Self Managed' && (
                                 <>
@@ -1840,22 +1601,6 @@ Timestamp: ${new Date().toLocaleString()}`;
                                 </div>
                               </li>
                             </ul>
-                            
-                            {/* Bottom Get Started Button */}
-                            <div className="mt-auto">
-                              <motion.a
-                                href={getCheckoutLink(plan.name, selectedCurrency, billingPeriod)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className={`block w-full py-3 rounded-lg bg-gradient-to-r ${plan.buttonGradient} 
-                                  text-white font-medium shadow-lg transition-all duration-300 border border-white/10 hover:border-transparent
-                                  hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] text-center`}
-                              >
-                                Get Started
-                              </motion.a>
-                            </div>
                           </div>
                         </div>
                       </motion.div>
@@ -1904,7 +1649,10 @@ Timestamp: ${new Date().toLocaleString()}`;
                               <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                onClick={() => setShowCustomModal(true)}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                }}
                                 className="px-8 py-3 rounded-lg bg-gradient-to-r from-[#8129D7] to-[#2A5EDB] 
                                   hover:from-[#9747FF] hover:to-[#4C7AE6] text-white font-medium shadow-lg 
                                   transition-all duration-300 flex items-center gap-2"
@@ -1924,191 +1672,6 @@ Timestamp: ${new Date().toLocaleString()}`;
           )}
         </AnimatePresence>
       </div>
-
-      {/* Custom Contact Modal */}
-      <AnimatePresence>
-        {showCustomModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setShowCustomModal(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-[#1a1a2e] border border-white/10 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto backdrop-blur-xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Modal Header */}
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-white">Tell us about your needs</h3>
-                <button
-                  onClick={() => setShowCustomModal(false)}
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-                >
-                  <X className="w-5 h-5 text-white/60" />
-                </button>
-              </div>
-
-              <p className="text-white/60 mb-6">
-                Help us understand your requirements so we can create the perfect custom solution for your business.
-              </p>
-
-              {/* Form */}
-              <form onSubmit={handleFormSubmit} className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-white/20 focus:outline-none transition-colors"
-                      placeholder="John Smith"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-white/20 focus:outline-none transition-colors"
-                      placeholder="john@company.com"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">
-                      Company Name
-                    </label>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-white/20 focus:outline-none transition-colors"
-                      placeholder="Your Company Ltd"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-white/20 focus:outline-none transition-colors"
-                      placeholder="+44 7XXX XXX XXX"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-white/80 mb-2">
-                    What are you looking for? *
-                  </label>
-                  <textarea
-                    name="requirements"
-                    value={formData.requirements}
-                    onChange={handleInputChange}
-                    required
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-white/20 focus:outline-none transition-colors resize-none"
-                    placeholder="Describe your specific requirements, goals, and any particular features you need..."
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">
-                      Budget Range
-                    </label>
-                    <select
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-white/20 focus:outline-none transition-colors"
-                    >
-                      {getBudgetOptions().map((option, index) => (
-                        <option key={index} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">
-                      Timeline
-                    </label>
-                    <select
-                      name="timeline"
-                      value={formData.timeline}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-white/20 focus:outline-none transition-colors"
-                    >
-                      <option value="">Select timeline</option>
-                      <option value="ASAP">ASAP</option>
-                      <option value="Within 1 month">Within 1 month</option>
-                      <option value="1-3 months">1-3 months</option>
-                      <option value="3-6 months">3-6 months</option>
-                      <option value="6+ months">6+ months</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <div className="pt-4">
-                  {submitStatus === 'success' ? (
-                    <div className="text-center py-4">
-                      <div className="inline-flex items-center gap-2 text-emerald-400 font-medium">
-                        <Check className="w-5 h-5" />
-                        Message sent successfully! We'll be in touch soon.
-                      </div>
-                    </div>
-                  ) : submitStatus === 'error' ? (
-                    <div className="text-center py-4">
-                      <div className="text-red-400 font-medium mb-4">
-                        Sorry, there was an error sending your message. Please try again or email us directly.
-                      </div>
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full py-3 rounded-lg bg-gradient-to-r from-[#8129D7] to-[#2A5EDB] hover:from-[#9747FF] hover:to-[#4C7AE6] text-white font-medium shadow-lg transition-all duration-300 disabled:opacity-50"
-                      >
-                        {isSubmitting ? 'Sending...' : 'Try Again'}
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      type="submit"
-                      disabled={isSubmitting || !formData.name || !formData.email || !formData.requirements}
-                      className="w-full py-3 rounded-lg bg-gradient-to-r from-[#8129D7] to-[#2A5EDB] hover:from-[#9747FF] hover:to-[#4C7AE6] text-white font-medium shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </button>
-                  )}
-                </div>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
